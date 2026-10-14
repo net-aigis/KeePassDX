@@ -25,7 +25,9 @@ class KdbxCoordinatorClient(
     private val baseUrl: String,
     private val databaseId: String,
     private val accessToken: String,
-    private val owner: String
+    private val owner: String,
+    // Never enable for app settings; confined to explicit local protocol tests.
+    private val allowInsecureLoopbackForTests: Boolean = false
 ) : AutoCloseable {
     private val executor: ScheduledExecutorService = Executors.newSingleThreadScheduledExecutor { task ->
         Thread(task, "kdbx-lease-renewal").apply { isDaemon = true }
@@ -37,12 +39,15 @@ class KdbxCoordinatorClient(
 
     init {
         require(Regex("[a-z0-9_-]{1,96}").matches(databaseId)) { "Invalid database id" }
-        require(accessToken.length >= 32 && '\n' !in accessToken && '\r' !in accessToken)
+        require(accessToken.length in 32..1024 && accessToken.all { it.code in 0x21..0x7e }) {
+            "Access token must be 32-1024 printable ASCII characters without whitespace"
+        }
         require(Regex("[A-Za-z0-9 ._-]{1,64}").matches(owner)) { "Invalid owner label" }
         val uri = URI(baseUrl)
-        require(uri.scheme == "https" ||
-            (uri.scheme == "http" && (uri.host == "127.0.0.1" || uri.host == "localhost"))) {
-            "HTTPS required (only localhost may use HTTP for tests)"
+        require(uri.host != null && (uri.scheme == "https" ||
+            (allowInsecureLoopbackForTests && uri.scheme == "http" &&
+                (uri.host == "127.0.0.1" || uri.host == "localhost")))) {
+            "HTTPS required; cleartext loopback is only available to explicit protocol tests"
         }
         require(uri.userInfo == null && uri.query == null && uri.fragment == null)
     }
@@ -79,7 +84,11 @@ class KdbxCoordinatorClient(
             val status = connection.responseCode
             if (status in 300..399) throw IOException("Refusing HTTP redirect: $status")
             val stream = if (status in 200..299) connection.inputStream else connection.errorStream
-            val payload = stream?.use { it.readBytes() } ?: byteArrayOf()
+            val maxBytes = if (method == "GET" && path == "/file" && status == 200)
+                CoordinatorByteLimits.MAX_KDBX_BYTES else CoordinatorByteLimits.MAX_CONTROL_BYTES
+            val payload = stream?.let {
+                CoordinatorByteLimits.readBounded(it, maxBytes, connection.contentLengthLong)
+            } ?: byteArrayOf()
             return Response(status, payload, connection.getHeaderField("ETag"))
         } finally {
             connection.disconnect()
@@ -156,6 +165,9 @@ class KdbxCoordinatorClient(
 
     fun publish(encryptedKdbx: ByteArray): String {
         require(encryptedKdbx.isNotEmpty()) { "Refusing empty KDBX" }
+        if (encryptedKdbx.size > CoordinatorByteLimits.MAX_KDBX_BYTES) {
+            throw IOException("KDBX exceeds permitted in-memory size")
+        }
         val currentLease = requireLease()
         val oldRevision = synchronized(mutex) { revision!! }
         val response = request("PUT", "/file", encryptedKdbx, currentLease, oldRevision)

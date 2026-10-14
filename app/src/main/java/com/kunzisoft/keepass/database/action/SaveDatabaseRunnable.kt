@@ -23,8 +23,8 @@ import android.content.Context
 import android.net.Uri
 import com.kunzisoft.keepass.database.ContextualDatabase
 import com.kunzisoft.keepass.coordination.CoordinatorSession
+import com.kunzisoft.keepass.coordination.BoundedKdbxOutputStream
 import com.kunzisoft.keepass.database.exception.DatabaseOutputException
-import java.io.ByteArrayOutputStream
 import com.kunzisoft.keepass.database.MainCredential
 import com.kunzisoft.keepass.database.element.MasterCredential
 import com.kunzisoft.keepass.database.exception.DatabaseException
@@ -71,7 +71,7 @@ open class SaveDatabaseRunnable(
                 // callback would be too late for this guarantee.
                 val destination = databaseCopyUri ?: database.fileUri
                 val coordinated = databaseCopyUri == null && CoordinatorSession.handles(destination)
-                val staging = if (coordinated) ByteArrayOutputStream() else null
+                val staging = if (coordinated) BoundedKdbxOutputStream() else null
                 database.saveData(
                     cacheFile = File.createTempFile("db_", ".tmp", context.cacheDir),
                     databaseOutputStream = {

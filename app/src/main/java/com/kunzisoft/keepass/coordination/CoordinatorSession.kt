@@ -53,7 +53,9 @@ internal object CoordinatorSession {
                         AtomicRecoveryStore.acknowledge(context.filesDir, recoveryIdentity(config), remoteRevision)
                     }
                     AtomicRecoveryStore.RecoveryAction.PUBLISH -> {
-                        val saved = pending.file.readBytes()
+                        val saved = CoordinatorByteLimits.readBounded(
+                            pending.file.inputStream(), CoordinatorByteLimits.MAX_KDBX_BYTES,
+                            pending.file.length())
                         val confirmedRevision = client.publish(saved)
                         AtomicRecoveryStore.acknowledge(context.filesDir, recoveryIdentity(config), confirmedRevision)
                         data = saved

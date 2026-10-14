@@ -5,6 +5,8 @@ import java.io.File
 import java.io.FileOutputStream
 import java.io.IOException
 import java.security.MessageDigest
+import android.system.Os
+import android.system.OsConstants
 
 /**
  * Durable, encrypted KDBX recovery copy written before any network publish.
@@ -22,6 +24,37 @@ internal object AtomicRecoveryStore {
         .digest(bytes).joinToString("") { "%02x".format(it.toInt() and 0xff) }
 
     private fun prefix(databaseId: String) = "coordinated-kdbx-${sha256(databaseId.toByteArray())}-"
+
+    /** Sync directory metadata after rename/delete, not just the file contents. */
+    private fun syncDirectory(directory: File) {
+        try {
+            val fd = Os.open(directory.absolutePath, OsConstants.O_RDONLY or OsConstants.O_DIRECTORY, 0)
+            try { Os.fsync(fd) } finally { Os.close(fd) }
+        } catch (e: Exception) {
+            throw IOException("Cannot durably sync the recovery directory", e)
+        }
+    }
+
+    private fun pendingHash(file: File): String {
+        if (file.length() > CoordinatorByteLimits.MAX_KDBX_BYTES) {
+            throw IOException("Pending KDBX exceeds permitted size")
+        }
+        val digest = MessageDigest.getInstance("SHA-256")
+        file.inputStream().use { input ->
+            val buffer = ByteArray(8192)
+            var total = 0L
+            while (true) {
+                val size = input.read(buffer)
+                if (size < 0) break
+                total += size
+                if (total > CoordinatorByteLimits.MAX_KDBX_BYTES) {
+                    throw IOException("Pending KDBX exceeds permitted size")
+                }
+                digest.update(buffer, 0, size)
+            }
+        }
+        return digest.digest().joinToString("") { "%02x".format(it.toInt() and 0xff) }
+    }
 
     @Synchronized
     fun find(directory: File, databaseId: String): Pending? {
@@ -48,6 +81,9 @@ internal object AtomicRecoveryStore {
     fun retain(directory: File, databaseId: String, baseRevision: String, encryptedDatabase: ByteArray): File {
         if (!validRevision.matches(baseRevision)) throw IOException("Invalid base revision")
         if (encryptedDatabase.isEmpty()) throw IOException("Refusing an empty recovery database")
+        if (encryptedDatabase.size > CoordinatorByteLimits.MAX_KDBX_BYTES) {
+            throw IOException("Pending KDBX exceeds permitted size")
+        }
         if (find(directory, databaseId) != null) throw IOException("Unsynchronized recovery copy already exists")
         val destination = File(directory, "${prefix(databaseId)}${baseRevision}-pending.kdbx")
         val staged = File.createTempFile("${prefix(databaseId)}${baseRevision}-", ".stage", directory)
@@ -59,6 +95,7 @@ internal object AtomicRecoveryStore {
             if (destination.exists() || !staged.renameTo(destination)) {
                 throw IOException("Could not atomically retain KDBX recovery copy")
             }
+            syncDirectory(directory)
             return destination
         } finally {
             staged.delete()
@@ -68,7 +105,7 @@ internal object AtomicRecoveryStore {
     @Synchronized
     fun decide(pending: Pending, remoteRevision: String): RecoveryAction {
         if (!validRevision.matches(remoteRevision)) throw IOException("Invalid remote revision")
-        val localRevision = sha256(pending.file.readBytes())
+        val localRevision = pendingHash(pending.file)
         return when {
             localRevision == remoteRevision -> RecoveryAction.ALREADY_PUBLISHED
             pending.baseRevision == remoteRevision -> RecoveryAction.PUBLISH
@@ -79,11 +116,12 @@ internal object AtomicRecoveryStore {
     @Synchronized
     fun acknowledge(directory: File, databaseId: String, expectedHash: String) {
         val pending = find(directory, databaseId) ?: throw IOException("Recovery copy missing")
-        if (!validRevision.matches(expectedHash) || sha256(pending.file.readBytes()) != expectedHash) {
+        if (!validRevision.matches(expectedHash) || pendingHash(pending.file) != expectedHash) {
             throw IOException("Recovery copy changed; refusing to delete it")
         }
         if (!pending.file.delete()) {
             throw IOException("Remote save succeeded, but recovery copy could not be removed")
         }
+        syncDirectory(directory)
     }
 }
