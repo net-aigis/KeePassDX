@@ -2,7 +2,7 @@ name: Coordinated KDBX - KeePassDX build and tests
 
 on:
   push:
-    branches: ["feature/coordinated-kdbx-20261014"]
+    branches: ["feature/coordinated-kdbx-20261014", "security/dx-hardening-20261015"]
   pull_request:
   workflow_dispatch:
 
