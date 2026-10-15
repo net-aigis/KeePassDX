@@ -28,7 +28,7 @@ internal object AtomicRecoveryStore {
     /** Sync directory metadata after rename/delete, not just the file contents. */
     private fun syncDirectory(directory: File) {
         try {
-            val fd = Os.open(directory.absolutePath, OsConstants.O_RDONLY or OsConstants.O_DIRECTORY, 0)
+            val fd = Os.open(directory.absolutePath, OsConstants.O_RDONLY, 0)
             try { Os.fsync(fd) } finally { Os.close(fd) }
         } catch (e: Exception) {
             throw IOException("Cannot durably sync the recovery directory", e)
