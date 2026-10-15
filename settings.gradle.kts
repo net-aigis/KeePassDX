@@ -15,7 +15,7 @@ dependencyResolutionManagement {
     }
 }
 
-rootProject.name = "KeePassDX"
+rootProject.name = "NetAigis-KeySafe"
 include(":app")
 include(":database")
 include(":crypto")

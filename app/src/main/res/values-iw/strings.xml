@@ -58,7 +58,7 @@
     <string name="entry_title">כותרת</string>
     <string name="entry_user_name">שם משתמש</string>
     <string name="error_arc4">הצופן זרם Arcfour אינו נתמך.</string>
-    <string name="error_can_not_handle_uri">לא ניתן לטפל ב־URI הזה ב־KeePassDX.</string>
+    <string name="error_can_not_handle_uri">לא ניתן לטפל ב־URI הזה ב־NetAigis KeySafe.</string>
     <string name="error_file_not_create">לא ניתן ליצור קובץ.</string>
     <string name="error_invalid_db">לא ניתן לקרוא את מסד הנתונים.</string>
     <string name="error_invalid_path">ודא שהנתיב נכון.</string>
@@ -109,7 +109,7 @@
     <string name="progress_create">יוצר מסד נתונים חדש…</string>
     <string name="progress_title">עובד…</string>
     <string name="protection">הגנה</string>
-    <string name="read_only_warning">תלוי במנהל הקבצים שלך, ייתכן ש-KeePassDX אינו מורשה לכתוב באחסון שלך.</string>
+    <string name="read_only_warning">תלוי במנהל הקבצים שלך, ייתכן ש-NetAigis KeySafe אינו מורשה לכתוב באחסון שלך.</string>
     <string name="content_description_remove_from_list">הסר</string>
     <string name="rounds">סבבי טרנספורמציה</string>
     <string name="rounds_explanation">סבבי הצפנה נוספים מספקים הגנה גבוהה יותר נגד התקפות כוח גס, אבל יכולות ממש להאט את הטעינה והשמירה.</string>
@@ -170,7 +170,6 @@
     <string name="content_description_otp_information">פרטי סיסמה חד־פעמית</string>
     <string name="error_otp_type">סוג הסיסמה החד־פעמית (OTP) הקיים אינו מזוהה על ידי טופס זה, ייתכן שהאימות שלו לא ייצור עוד את האסימון כראוי.</string>
     <string name="hint_icon_name">שם סמל</string>
-    <string name="html_about_privacy">&lt;strong&gt;אין אחזור של נתוני משתמש&lt;/strong&gt;, יישום זה אינו מתחבר לשום שרת, פועל באופן מקומי בלבד ומכבד באופן מלא את פרטיות המשתמשים.</string>
     <string name="hardware_key">מפתח חומרה</string>
     <string name="custom_data">נתונים מותאמים אישית</string>
     <string name="otp_type">סוג סיסמה חד־פעמית</string>
@@ -229,9 +228,6 @@
     <string name="content_description_nav_header">כותרת ניווט</string>
     <string name="navigation_drawer_open">פתיחת מגירת ניווט</string>
     <string name="navigation_drawer_close">סגירת מגירת ניווט</string>
-    <string name="html_about_licence">KeePassDX © %1$d Kunzisoft הוא יישום &lt;strong&gt;קוד פתוח&lt;/strong&gt; ו&lt;strong&gt;בלי פרסום&lt;/strong&gt;.
-\nהוא ניתן כפי שהוא, תחת רישיון &lt;strong&gt;GPLv3&lt;/strong&gt;, ללא כל אחריות.</string>
-    <string name="html_about_contribution">בכדי &lt;strong&gt;לשמור על החופש שלנו&lt;/strong&gt;, &lt;strong&gt;לתקן באגים&lt;/strong&gt;, &lt;strong&gt;להוסיף תכונות&lt;/strong&gt; &lt;strong&gt;ולהיות תמיד פעילים&lt;/strong&gt;, אנו סומכים על &lt;strong&gt;תרומתך&lt;/strong&gt;.</string>
     <string name="searchable">ניתן לחיפוש</string>
     <string name="inherited">ירושה</string>
     <string name="auto_type_sequence">רצף הקלדה אוטומטית</string>
@@ -329,7 +325,7 @@
     <string name="settings_database_force_changing_master_key_next_time_summary">דרוש שינוי מפתח ראשי בפעם הבאה (פעם אחת)</string>
     <string name="allow_copy_password_warning">אזהרה: לוח ההעתקה משותף לכל היישומים. אם מידע רגיש יועתק, תוכנות אחרות עשויות לשחזר אותו.</string>
     <string name="disable">השבת</string>
-    <string name="keyboard_label">Magikeyboard (KeePassDX)</string>
+    <string name="keyboard_label">Magikeyboard (NetAigis KeySafe)</string>
     <string name="keyboard_notification_entry_clear_close_title">נקה בסגירה</string>
     <string name="keyboard_notification_entry_content_title_text">רשומה</string>
     <string name="keyboard_notification_entry_content_title">%1$s זמין ב־Magikeyboard</string>
@@ -401,7 +397,7 @@
     <string name="configure_biometric">לא נרשם אישור ביומטרי או של מכשיר.</string>
     <string name="database_history">היסטוריה</string>
     <string name="autofill">מילוי אוטומטי</string>
-    <string name="autofill_sign_in_prompt">התחבר עם KeePassDX</string>
+    <string name="autofill_sign_in_prompt">התחבר עם NetAigis KeySafe</string>
     <string name="general">כללי</string>
     <string name="autofill_explanation_summary">הגדר מילוי אוטומטי כדי למלא במהירות טפסים ביישומים אחרים</string>
     <string name="set_credential_provider_service_title">הגדר שירות מילוי אוטומטי ברירת מחדל</string>
@@ -563,7 +559,7 @@
     <string name="properties">מאפיינים</string>
     <string name="success_import_app_properties">הגדרות יישום יובאו</string>
     <string name="sort_title">כותרת</string>
-    <string name="description_app_properties">מאפייני KeePassDX לניהול הגדרות יישום</string>
+    <string name="description_app_properties">מאפייני NetAigis KeySafe לניהול הגדרות יישום</string>
     <string name="error_import_app_properties">שגיאה במהלך ייבוא הגדרות יישום.</string>
     <string name="style_name_divine">שמיימי</string>
     <string name="style_name_classic">קלאסי</string>
@@ -696,7 +692,7 @@
     <string name="passkey_update_description">יש לעדכן את מפתח הגישה ב־%1$s</string>
     <string name="passkey_selection_username">לא נמצא מפתח גישה</string>
     <string name="passkey_selection_description">בחר מפתח גישה קיים</string>
-    <string name="credential_provider_database_username">KeePassDX מסד נתונים</string>
+    <string name="credential_provider_database_username">NetAigis KeySafe מסד נתונים</string>
     <string name="credential_provider_locked_database_description">בחר בשביל לפתוח</string>
     <string name="passkey_username">שם משתמש למפתח גישה</string>
     <string name="passkey_private_key">מפתח פרטי למפתח גישה</string>
@@ -735,7 +731,7 @@
     <string name="first_chars">תווים ראשונים</string>
     <string name="check">בדיקה</string>
     <string name="credential_provider">ספק אישורים</string>
-    <string name="credential_provider_service_name">ספק אישורים KeePassDX</string>
+    <string name="credential_provider_service_name">ספק אישורים NetAigis KeySafe</string>
     <string name="error_passkey_credential_id">לא נמצא מפתח גישה עבור גורם %1$s ופרטי אימות %2$s</string>
     <string name="user_verification_required_description_precise">%1$s דורש לוודא שזה אכן אתה.</string>
     <string name="user_verification">אימות משתמש</string>
@@ -748,5 +744,5 @@
     <string name="show_tags_summary">מציג תגיות ברשימת הערכים</string>
     <string name="benchmark_calculation">חשב עבור %1$s s</string>
     <string name="benchmarking">מבצע מדידת ביצועים…</string>
-    <string name="keyboard_share_browser">שתף מ־ %1$s ל־KeePassDX</string>
+    <string name="keyboard_share_browser">שתף מ־ %1$s ל־NetAigis KeySafe</string>
 </resources>

@@ -1,1 +1,1 @@
-Spravujte přístupové klíče a hesla v lokálním a open-source trezoru
+KDBX password manager with optional HTTPS coordination.

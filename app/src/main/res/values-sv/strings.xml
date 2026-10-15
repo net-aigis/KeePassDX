@@ -43,7 +43,6 @@
     <string name="decrypting_db">Dekrypterar databasinnehållet…</string>
     <string name="default_checkbox">Använd som standarddatabas</string>
     <string name="digits">Siffror</string>
-    <string name="html_about_licence">KeePassDX © %1$d Kunzisoft är &lt;strong&gt;programvara med öppen källkod&lt;/strong&gt; och &lt;strong&gt;reklamfri&lt;/strong&gt;. \nDen tillhandahålls i befintligt skick enligt &lt;strong&gt;GPLv3-licensen&lt;/strong&gt; och utan garantier.</string>
     <string name="select_database_file">Öppna befintligt valv</string>
     <string name="entry_accessed">Senast åtkommen</string>
     <string name="entry_cancel">Avbryt</string>
@@ -59,7 +58,7 @@
     <string name="entry_url">URL</string>
     <string name="entry_user_name">Användarnamn</string>
     <string name="error_arc4">Strömchiffret Arcfour stöds inte.</string>
-    <string name="error_can_not_handle_uri">KeePassDX kunde inte hantera denna URI.</string>
+    <string name="error_can_not_handle_uri">NetAigis KeySafe kunde inte hantera denna URI.</string>
     <string name="error_file_not_create">Kunde inte skapa filen.</string>
     <string name="error_invalid_db">Kunde inte läsa databasen.</string>
     <string name="error_invalid_path">Se till att sökvägen är korrekt.</string>
@@ -158,7 +157,7 @@
     <string name="copy_field">Kopia av %1$s</string>
     <string name="menu_form_filling_settings">Formulärfyllning</string>
     <string name="read_only">Skrivskyddad</string>
-    <string name="read_only_warning">Beroende på filhanteraren kanske KeePassDX saknar skrivbehörighet till lagringsutrymmet.</string>
+    <string name="read_only_warning">Beroende på filhanteraren kanske NetAigis KeySafe saknar skrivbehörighet till lagringsutrymmet.</string>
     <string name="encryption_explanation">Krypteringsalgoritm som används för all data i databasen</string>
     <string name="kdf_explanation">För att generera nyckeln till krypteringsalgoritmen transformeras huvudnyckeln med en slumpmässigt saltad nyckelhärledningsfunktion.</string>
     <string name="memory_usage">Minnesanvändning</string>
@@ -181,7 +180,7 @@
     <string name="encrypted_value_stored">Krypterat lösenord sparat</string>
     <string name="general">Allmänt</string>
     <string name="autofill">Autofyll</string>
-    <string name="autofill_sign_in_prompt">Logga in med KeePassDX</string>
+    <string name="autofill_sign_in_prompt">Logga in med NetAigis KeySafe</string>
     <string name="set_credential_provider_service_title">Autentiseringsleverantör</string>
     <string name="password_size_title">Längd på genererat lösenord</string>
     <string name="password_size_summary">Anger standardlängden för de genererade lösenorden</string>
@@ -275,7 +274,7 @@
     <string name="clipboard">Urklipp</string>
     <string name="build_label">Byggversion %1$s</string>
     <string name="keyboard_name">Magikeyboard</string>
-    <string name="keyboard_label">Magikeyboard (KeePassDX)</string>
+    <string name="keyboard_label">Magikeyboard (NetAigis KeySafe)</string>
     <string name="keyboard_setting_label">Inställningar för Magikeyboard</string>
     <string name="keyboard_entry_category">Post</string>
     <string name="keyboard_entry_timeout_title">Tidsgräns</string>
@@ -406,7 +405,6 @@
     <string name="remember_database_locations_title">Kom ihåg databasplatser</string>
     <string name="error_label_exists">Den här etiketten finns redan.</string>
     <string name="entry_attachments">Bilagor</string>
-    <string name="html_about_contribution">För att &lt;strong&gt;behålla vår frihet&lt;/strong&gt;, &lt;strong&gt;rätta fel&lt;/strong&gt;, &lt;strong&gt;lägga till funktioner&lt;/strong&gt; och &lt;strong&gt;hålla projektet aktivt&lt;/strong&gt; behöver vi ditt &lt;strong&gt;bidrag&lt;/strong&gt;.</string>
     <string name="entry_add_attachment">Bifoga fil</string>
     <string name="discard_changes">Förkasta ändringarna?</string>
     <string name="validate">Bekräfta</string>
@@ -434,7 +432,6 @@
     <string name="membership">Medlemskap</string>
     <string name="error_move_group_here">Du kan inte flytta en grupp hit.</string>
     <string name="content_description_otp_information">Engångslösenordsinformation</string>
-    <string name="html_about_privacy">&lt;strong&gt;Inga användardata samlas in.&lt;/strong&gt; Appen ansluter inte till någon server, fungerar endast lokalt och respekterar användarnas integritet fullt ut.</string>
     <string name="cryptocurrency">Kryptovalutaplånbok</string>
     <string name="version">Version</string>
     <string name="tags">Taggar</string>
@@ -521,7 +518,7 @@
     <string name="import_app_properties_summary">Välj fil för att importera appinställningar</string>
     <string name="export_app_properties_title">Exportera appinställningar</string>
     <string name="export_app_properties_summary">Skapa en fil för att exportera appinställningar</string>
-    <string name="description_app_properties">KeePassDX-egenskaper för hantering av appinställningar</string>
+    <string name="description_app_properties">NetAigis KeySafe-egenskaper för hantering av appinställningar</string>
     <string name="success_import_app_properties">Appinställningarna har importerats</string>
     <string name="error_import_app_properties">Ett fel inträffade när appinställningarna importerades.</string>
     <string name="success_export_app_properties">Appinställningarna har exporterats</string>
@@ -645,7 +642,7 @@
     <string name="keyboard_previous_fill_in_summary">Växla automatiskt tillbaka till föregående tangentbord efter att \"Automatisk knappåtgärd\" har utförts</string>
     <string name="keyboard_previous_lock_title">Lås databasen</string>
     <string name="keyboard_previous_lock_summary">Växla automatiskt tillbaka till föregående tangentbord efter att databasen har låsts</string>
-    <string name="keyboard_share_browser">Dela från %1$s till KeePassDX</string>
+    <string name="keyboard_share_browser">Dela från %1$s till NetAigis KeySafe</string>
     <string name="custom_fields">Anpassade fält</string>
     <string name="back_to_previous_keyboard">Tillbaka till föregående tangentbord</string>
     <string name="select_entry">Välj post</string>
@@ -722,8 +719,8 @@
     <string name="hide_templates_title">Dölj mallar</string>
     <string name="hide_templates_summary">Mallar visas inte</string>
     <string name="passkey">Lösenordsnyckel</string>
-    <string name="credential_provider_service_name">KeePassDX-autentiseringsleverantör</string>
-    <string name="credential_provider_database_username">KeePassDX-databas</string>
+    <string name="credential_provider_service_name">NetAigis KeySafe-autentiseringsleverantör</string>
+    <string name="credential_provider_database_username">NetAigis KeySafe-databas</string>
     <string name="credential_provider_locked_database_description">Välj för att låsa upp</string>
     <string name="passkey_creation_description">Spara lösenordsnyckeln i en ny post</string>
     <string name="passkey_update_description">Uppdatera lösenordsnyckeln i posten \"%1$s\"</string>

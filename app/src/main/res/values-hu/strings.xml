@@ -42,8 +42,6 @@
     <string name="decrypting_db">Adatbázis-tartalom titkosításának feloldása…</string>
     <string name="default_checkbox">Használat alapértelmezett adatbázisként</string>
     <string name="digits">Számok</string>
-    <string name="html_about_licence">KeePassDX © %1$d Kunzisoft. A program &lt;strong&gt;nyílt forráskódú&lt;/strong&gt; és &lt;strong&gt;reklámmentes&lt;/strong&gt;.
-\nA program jelen állapotában kerül közreadásra, &lt;strong&gt;GPLv3&lt;/strong&gt; licenc alatt, bármilyen garancia nélkül.</string>
     <string name="select_database_file">Létező széf megnyitása</string>
     <string name="entry_accessed">Utolsó hozzáférés</string>
     <string name="entry_cancel">Mégse</string>
@@ -59,7 +57,7 @@
     <string name="entry_url">Webcím</string>
     <string name="entry_user_name">Felhasználónév</string>
     <string name="error_arc4">Az Arcfour adatfolyam-titkosítás nem támogatott.</string>
-    <string name="error_can_not_handle_uri">Ez az URI nem kezelhető a KeePassDX-ben.</string>
+    <string name="error_can_not_handle_uri">Ez az URI nem kezelhető a NetAigis KeySafe-ben.</string>
     <string name="error_file_not_create">Nem sikerült létrehozni a fájlt.</string>
     <string name="error_invalid_db">Az adatbázist nem lehet olvasni.</string>
     <string name="error_invalid_path">Győződjön meg arról, hogy az útvonal helyes.</string>
@@ -112,7 +110,7 @@
     <string name="progress_title">Feldolgozás…</string>
     <string name="protection">Védelem</string>
     <string name="read_only">Írásvédett</string>
-    <string name="read_only_warning">A KeePassDX-nek írási engedélyre van szüksége, hogy bármit is módosíthasson az adatbázisban.</string>
+    <string name="read_only_warning">A NetAigis KeySafe-nek írási engedélyre van szüksége, hogy bármit is módosíthasson az adatbázisban.</string>
     <string name="content_description_remove_from_list">Eltávolítás</string>
     <string name="root">Gyökérkönyvár</string>
     <string name="rounds">Transzformációs körök</string>
@@ -178,7 +176,7 @@
     <string name="menu_appearance_settings">Megjelenés</string>
     <string name="general">Általános</string>
     <string name="autofill">Automatikus kitöltés</string>
-    <string name="autofill_sign_in_prompt">Bejelentkezés a KeePassDX-szel</string>
+    <string name="autofill_sign_in_prompt">Bejelentkezés a NetAigis KeySafe-szel</string>
     <string name="set_credential_provider_service_title">Hitelesítő adatkezelő szolgáltatás</string>
     <string name="autofill_explanation_summary">Automatikus kitöltés az űrlapok gyors kitöltéséhez más alkalmazásokban</string>
     <string name="password_size_title">Előállított jelszó mérete</string>
@@ -218,7 +216,7 @@
     <string name="magic_keyboard_title">Mágikus billentyűzet</string>
     <string name="magic_keyboard_explanation_summary">Egyéni billentyűzet aktiválása, amely kitölti a jelszavakat és az összes azonosító mezőt</string>
     <string name="keyboard_name">Mágikus billentyűzet</string>
-    <string name="keyboard_label">Mágikus billentyűzet (KeePassDX)</string>
+    <string name="keyboard_label">Mágikus billentyűzet (NetAigis KeySafe)</string>
     <string name="keyboard_setting_label">Mágikus billentyűzet beállításai</string>
     <string name="keyboard_entry_category">Bejegyzés</string>
     <string name="keyboard_entry_timeout_title">Időtúllépés</string>
@@ -320,7 +318,6 @@
     <string name="auto_focus_search_summary">Keresés kérése az adatbázis megnyitásakor</string>
     <string name="error_create_database">Az adatbázisfájl létrehozása sikertelen.</string>
     <string name="error_label_exists">Ez a címke már létezik.</string>
-    <string name="html_about_contribution">A &lt;strong&gt;szabadságunk megtartása&lt;/strong&gt;, a &lt;strong&gt;hibák javítása&lt;/strong&gt;, a &lt;strong&gt;funkciók hozzáadása&lt;/strong&gt; és az &lt;strong&gt;állandó aktivitás&lt;/strong&gt; érdekében számítunk a &lt;strong&gt;közreműködésére&lt;/strong&gt;.</string>
     <string name="entry_add_attachment">Melléklet hozzáadása</string>
     <string name="entry_add_field">Mező hozzáadása</string>
     <string name="entry_password_generator">Jelszógenerátor</string>
@@ -498,7 +495,7 @@
     <string name="success_import_app_properties">Alkalmazásbeállítások importálva</string>
     <string name="error_export_app_properties">Hiba történt az alkalmazásbeállítások exportálása során.</string>
     <string name="warning_database_info_changed">Az adatbázisban található információkat az alkalmazáson kívül módosították.</string>
-    <string name="description_app_properties">KeePassDX tulajdonságok az alkalmazásbeállítások kezeléséhez</string>
+    <string name="description_app_properties">NetAigis KeySafe tulajdonságok az alkalmazásbeállítások kezeléséhez</string>
     <string name="success_export_app_properties">Alkalmazásbeállítások exportálva</string>
     <string name="content_description_database_color">Adatbázis színe</string>
     <string name="error_import_app_properties">Hiba történt az alkalmazásbeállítások importálása során.</string>
@@ -611,7 +608,6 @@
     <string name="configure">Beállítás</string>
     <string name="content_description_nav_header">Navigációs fejléc</string>
     <string name="navigation_drawer_close">A navigációs tálca bezárása</string>
-    <string name="html_about_privacy">&lt;strong&gt;Nincsenek felhasználói adatok lekérve&lt;/strong&gt;, az alkalmazás nem kapcsolódik semmilyen külső kiszolgálóhoz, csak helyben működik, és teljes mértékben tiszteletben tartja a felhasználók adatvédelmét.</string>
     <string name="enable_keep_screen_on_summary">Képernyő bekapcsolva tartása egy bejegyzés megtekintésekor vagy szerkesztésekor</string>
     <string name="title_case">Nagy kezdőbetűs</string>
     <string name="navigation_drawer_open">A navigációs tálca kinyitása</string>
@@ -714,12 +710,12 @@
     <string name="passkeys_backup_state_summary">Jelzi, hogy a hitelesítési adatokról biztonsági másolat lett létrehozva, és azok egyetlen eszköz elvesztése esetén is védve vannak</string>
     <string name="credential_provider_service_subtitle">Biztonsági kulcsok, automatikus kitöltés hitelesítési adat szolgáltató</string>
     <string name="passkey">Hozzáférési kulcs</string>
-    <string name="credential_provider_service_name">KeePassDX hitelesítési adatok szolgáltató</string>
+    <string name="credential_provider_service_name">NetAigis KeySafe hitelesítési adatok szolgáltató</string>
     <string name="passkey_creation_description">Hozzáférési kulcs mentése új bejegyzésben</string>
     <string name="passkey_update_description">Hozzáférési kulcs frissítése a(z) %1$s fájlban</string>
     <string name="passkey_selection_username">Nem található hozzáférési kulcs</string>
     <string name="passkey_selection_description">Válasszon egy meglévő hozzáférési kulcsot</string>
-    <string name="credential_provider_database_username">KeePassDX adatbázis</string>
+    <string name="credential_provider_database_username">NetAigis KeySafe adatbázis</string>
     <string name="credential_provider_locked_database_description">Válassza a feloldáshoz</string>
     <string name="passkey_username">Hozzáférési kulcs felhasználóneve</string>
     <string name="passkey_private_key">Hozzáférési kulcs privát kulcsa</string>
@@ -760,7 +756,7 @@
     <string name="show_tags_summary">Megjeleníti a címkéket a bejegyzések listájában</string>
     <string name="benchmark_calculation">Számítás %1$s másodpercre</string>
     <string name="benchmarking">Összehasonlítás…</string>
-    <string name="keyboard_share_browser">Megosztás innen: %1$s a KeePassDX-be</string>
+    <string name="keyboard_share_browser">Megosztás innen: %1$s a NetAigis KeySafe-be</string>
     <string name="error_memory_too_large">A „memóriahasználat” túl magas. Beállítás erre: %1$s.</string>
     <string name="error_parallelism_too_large">A „párhuzamosság” túl magas. Beállítás erre: %1$s.</string>
     <string name="error_missing_parent">Ez a művelet szülőelem nélkül nem hajtható végre.</string>

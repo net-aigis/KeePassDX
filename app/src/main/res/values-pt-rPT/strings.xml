@@ -42,8 +42,6 @@
     <string name="decrypting_db">A desencriptar o conteúdo da base de dados…</string>
     <string name="default_checkbox">Utilizar como base de dados predefinida</string>
     <string name="digits">Dígitos</string>
-    <string name="html_about_licence">KeePassDX © %1$d Kunzisoft tem o &lt;strong&gt;código-fonte aberto&lt;/strong&gt; e &lt;strong&gt;sem publicidade&lt;/strong&gt;.
-\nÉ fornecido como está, sob a &lt;strong&gt;licença GPLv3&lt;/strong&gt;, sem qualquer garantia.</string>
     <string name="select_database_file">Abrir o cofre existente</string>
     <string name="entry_accessed">Acedido</string>
     <string name="entry_cancel">Cancelar</string>
@@ -60,7 +58,7 @@
     <string name="entry_url">URL</string>
     <string name="entry_user_name">Nome de utilizador</string>
     <string name="error_arc4">A cifra de fluxo Arcfour não é suportada.</string>
-    <string name="error_can_not_handle_uri">Não foi possível processar esta URI no KeePassDX.</string>
+    <string name="error_can_not_handle_uri">Não foi possível processar esta URI no NetAigis KeySafe.</string>
     <string name="error_file_not_create">Não foi possível criar o ficheiro.</string>
     <string name="error_invalid_db">Não foi possível ler a base de dados.</string>
     <string name="error_invalid_path">Certifique-se que o caminho é válido.</string>
@@ -113,7 +111,7 @@
     <string name="progress_title">Em funcionamento…</string>
     <string name="protection">Proteção</string>
     <string name="read_only">Apenas leitura</string>
-    <string name="read_only_warning">Dependendo do seu gestor de ficheiros, o KeePassDX pode não ter permissão de escrita no armazenamento.</string>
+    <string name="read_only_warning">Dependendo do seu gestor de ficheiros, o NetAigis KeySafe pode não ter permissão de escrita no armazenamento.</string>
     <string name="content_description_remove_from_list">Remover</string>
     <string name="root">Raiz</string>
     <string name="rounds">Rodadas de transformação</string>
@@ -174,7 +172,7 @@
     <string name="menu_appearance_settings">Aparência</string>
     <string name="general">Geral</string>
     <string name="autofill">Preenchimento automático</string>
-    <string name="autofill_sign_in_prompt">Iniciar sessão com KeePassDX</string>
+    <string name="autofill_sign_in_prompt">Iniciar sessão com NetAigis KeySafe</string>
     <string name="set_credential_provider_service_title">Definir como serviço de preenchimento automático predefinido</string>
     <string name="autofill_explanation_summary">Configure o serviço para rapidamente preencher formulários noutras apps</string>
     <string name="password_size_title">Tamanho da palavra-passe gerada</string>
@@ -271,7 +269,7 @@
     <string name="list_entries_show_username_summary">Mostra nomes de utilizador nas listas de entradas</string>
     <string name="clipboard">Área de transferência</string>
     <string name="keyboard_name">Magikeyboard</string>
-    <string name="keyboard_label">Magikeyboard (KeePassDX)</string>
+    <string name="keyboard_label">Magikeyboard (NetAigis KeySafe)</string>
     <string name="keyboard_setting_label">Configurações do Magikeyboard</string>
     <string name="keyboard_entry_category">Entrada</string>
     <string name="keyboard_entry_timeout_title">Tempo limite</string>
@@ -367,7 +365,6 @@
     <string name="error_otp_secret_key">A chave secreta tem de ser no formato Base32.</string>
     <string name="enable">Ativar</string>
     <string name="database_data_compression_title">Compressão de dados</string>
-    <string name="html_about_contribution">Para &lt;strong&gt;manter a liberdade&lt;/strong&gt;, &lt;strong&gt;corrigir erros&lt;/strong&gt;, &lt;strong&gt;adicionar funcionalidades&lt;/strong&gt; e &lt;strong&gt;para sermos sempre ativos&lt;/strong&gt;, contamos com sua &lt;strong&gt;contribuição&lt;/strong&gt;.</string>
     <string name="biometric_unlock_enable_title">Desbloqueio biométrico</string>
     <string name="entry_attachments">Anexos</string>
     <string name="compression_gzip">Gzip</string>
@@ -520,7 +517,7 @@
     <string name="success_export_app_properties">Definições da aplicação exportadas</string>
     <string name="error_import_app_properties">Erro durante a importação das definições da aplicação.</string>
     <string name="success_import_app_properties">Definições da aplicação importadas</string>
-    <string name="description_app_properties">Propriedades do KeePassDX para gerir as configurações da aplicação</string>
+    <string name="description_app_properties">Propriedades do NetAigis KeySafe para gerir as configurações da aplicação</string>
     <string name="export_app_properties_summary">Criar um ficheiro para exportar as definições da aplicação</string>
     <string name="export_app_properties_title">Exportar definições da aplicação</string>
     <string name="import_app_properties_summary">Selecionar um ficheiro para importar as definições da aplicação</string>
@@ -584,7 +581,6 @@
     <string name="content_description_passphrase_word_count">Número de palavras da frase-chave</string>
     <string name="waiting_challenge_request">À espera do pedido de desafio…</string>
     <string name="waiting_challenge_response">À espera da resposta ao desafio…</string>
-    <string name="html_about_privacy">&lt;strong&gt;Nenhum dado de utilizador é recuperado&lt;/strong&gt;, esta aplicação não se liga a nenhum servidor, funciona apenas localmente e respeita plenamente a privacidade dos utilizadores.</string>
     <string name="tags">Etiquetas</string>
     <string name="search_filters">Filtros de pesquisa</string>
     <string name="wireless">Wi-Fi</string>
@@ -740,8 +736,8 @@
     <string name="education_user_verification_title">Verificação para ações sensíveis</string>
     <string name="education_user_verification_summary">Alterar o modo de verificação do utilizador para a sessão.\n\n\"Verificação do Utilizador Ativada\" verifica ações em campos protegidos e nas configurações da base de dados.\n\"Verificação do Utilizador Desativada\" permite alterar qualquer dado na sua base de dados sem verificação.</string>
     <string name="passkey">Chave de acesso</string>
-    <string name="credential_provider_service_name">Provedor de Credenciais KeePassDX</string>
-    <string name="credential_provider_database_username">Base de dados KeePassDX</string>
+    <string name="credential_provider_service_name">Provedor de Credenciais NetAigis KeySafe</string>
+    <string name="credential_provider_database_username">Base de dados NetAigis KeySafe</string>
     <string name="credential_provider_locked_database_description">Selecione para desbloquear</string>
     <string name="passkey_creation_description">Gravar chave de acesso na entrada nova</string>
     <string name="passkey_update_description">Atualizar chave de acesso em %1$s</string>
@@ -766,5 +762,5 @@
     <string name="show_tags_summary">Exibir Etiquetas na lista de entradas</string>
     <string name="benchmark_calculation">Calcular para %1$s s</string>
     <string name="benchmarking">A executar análise comparativa…</string>
-    <string name="keyboard_share_browser">Partilhe de %1$s para KeePassDX</string>
+    <string name="keyboard_share_browser">Partilhe de %1$s para NetAigis KeySafe</string>
 </resources>

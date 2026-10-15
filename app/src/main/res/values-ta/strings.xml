@@ -395,7 +395,7 @@
     <string name="application_appearance">இடைமுகம்</string>
     <string name="magic_keyboard_title">மாயவிசைப்பலகை</string>
     <string name="keyboard_name">மாயவிசைப்பலகை</string>
-    <string name="keyboard_label">Magikeyboard (keepassdx)</string>
+    <string name="keyboard_label">Magikeyboard (NetAigis KeySafe)</string>
     <string name="keyboard_notification_entry_title">அறிவிப்பு செய்தி</string>
     <string name="keyboard_notification_entry_clear_close_summary">அறிவிப்பை மூடும்போது தரவுத்தளத்தை மூடு</string>
     <string name="keyboard_notification_entry_content_title">Magikeyboard இல் %1$s கிடைக்கிறது</string>
@@ -548,9 +548,6 @@
     <string name="content_description_keyboard_close_fields">நெருங்கிய புலங்கள்</string>
     <string name="select_to_copy">இடைநிலைப்பலகைக்கு %1$s ஐ நகலெடுக்கத் தேர்ந்தெடுக்கவும்</string>
     <string name="retrieving_db_key">தரவுத்தள விசையை மீட்டெடுப்பது…</string>
-    <string name="html_about_licence">கீப்ஆச் டிஎக்ச் © %1$d குன்சிசாஃப்ட் &lt;strong&gt; திறந்த மூல &lt;/strong&gt; மற்றும் &lt;strong&gt; விளம்பரம் இல்லாமல் &lt;/strong&gt;.\n இது &lt;strong&gt; gplv3 &lt;/strong&gt; உரிமத்தின் கீழ், எந்த உத்தரவாதமும் இல்லாமல் வழங்கப்படுகிறது.</string>
-    <string name="html_about_privacy">&lt;strong&gt; பயனர் தரவு எதுவும் மீட்டெடுக்கப்படவில்லை &lt;/strong&gt;, இந்த பயன்பாடு எந்த சேவையகத்துடனும் இணைக்கப்படாது, உள்நாட்டில் மட்டுமே வேலை செய்கிறது மற்றும் பயனர்களின் தனியுரிமையை முழுமையாக மதிக்கிறது.</string>
-    <string name="html_about_contribution">&lt;strong&gt; எங்கள் சுதந்திரத்தை வைத்திருங்கள் &lt;/strong&gt;, &lt;strong&gt; பிழைகள் &lt;/strong&gt;, &lt;strong&gt; அம்சங்களைச் சேர் &lt;/strong&gt; மற்றும் &lt;strong&gt; எப்போதும் செயலில் இருக்க &lt;/strong&gt; &lt;strong&gt; பங்களிப்பு &lt;/strong&gt;.</string>
     <string name="rounds_explanation">கூடுதல் குறியாக்க சுற்றுகள் முரட்டுத்தனமான தாக்குதல்களுக்கு எதிராக அதிக பாதுகாப்பை அளிக்கின்றன, ஆனால் ஏற்றுதல் மற்றும் சேமிப்பை குறைக்கும்.</string>
     <string name="space">இடைவெளி</string>
     <string name="filter">வடிப்பி</string>
@@ -693,8 +690,8 @@
     <string name="education_user_verification_title">முக்கிய செயல்களுக்கான சரிபார்ப்பு</string>
     <string name="education_user_verification_summary">அமர்வுக்கான பயனர் சரிபார்ப்பு பயன்முறையை மாற்றவும். \n\n\"பயனர் சரிபார்ப்பு இயக்கப்பட்டது\" பாதுகாக்கப்பட்ட புலங்கள் மற்றும் தரவுத்தள அமைப்புகளில் செயல்பாட்டைச் சரிபார்க்கிறது. \n\"பயனர் சரிபார்ப்பு முடக்கப்பட்டது\" என்பது உங்கள் தரவுத்தளத்தில் உள்ள எந்தத் தரவையும் சரிபார்ப்பு இல்லாமல் மாற்ற உங்களை அனுமதிக்கிறது.</string>
     <string name="passkey">பாச்கீ</string>
-    <string name="credential_provider_service_name">KeePassDX நற்சான்றிதழ் வழங்குநர்</string>
-    <string name="credential_provider_database_username">KeePassDX தரவுத்தளம்</string>
+    <string name="credential_provider_service_name">NetAigis KeySafe நற்சான்றிதழ் வழங்குநர்</string>
+    <string name="credential_provider_database_username">NetAigis KeySafe தரவுத்தளம்</string>
     <string name="credential_provider_locked_database_description">திறக்க தேர்ந்தெடுக்கவும்</string>
     <string name="passkey_creation_description">புதிய நுழைவில் கடவுச்சொல்லை சேமிக்கவும்</string>
     <string name="passkey_update_description">கடவுச்சொல்லை %1$s இல் புதுப்பிக்கவும்</string>

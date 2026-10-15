@@ -117,12 +117,11 @@
     <string name="select_to_copy">اختر لنسخ %1$s إلى الحافظة</string>
     <string name="retrieving_db_key">جارٍ استرجاع مفتاح قاعدة البيانات…</string>
     <string name="default_checkbox">استخدامها كقاعدة بيانات افتراضية</string>
-    <string name="html_about_licence">KeePassDX © %1$d Kunzisoft هو برنامج &lt;strong&gt;مفتوح المصدر&lt;/strong&gt; و&lt;strong&gt;خالٍ من الإعلانات&lt;/strong&gt;.\nيُقدَّم كما هو بموجب ترخيص &lt;strong&gt;GPLv3&lt;/strong&gt;، دون أي ضمان.</string>
     <string name="entry_accessed">تم الوصول إليه</string>
     <string name="entry_expires">تنتهي صلاحيته في</string>
     <string name="entry_keyfile">ملف المفتاح</string>
     <string name="error_arc4">التشفير الدفقي Arcfour غير مدعوم.</string>
-    <string name="error_can_not_handle_uri">لم يتمكن KeePassDX من معالجة هذا المعرّف الموحّد للموارد (URI).</string>
+    <string name="error_can_not_handle_uri">لم يتمكن NetAigis KeySafe من معالجة هذا المعرّف الموحّد للموارد (URI).</string>
     <string name="error_invalid_db">تعذرت قراءة قاعدة البيانات.</string>
     <string name="error_nokeyfile">حدِّد ملف المفتاح.</string>
     <string name="error_out_of_memory">لا توجد ذاكرة كافية لتحميل قاعدة البيانات بالكامل.</string>
@@ -154,7 +153,7 @@
     <string name="select_database_file">فتح خزنة موجودة</string>
     <string name="create_keepass_file">إنشاء خزنة جديدة</string>
     <string name="progress_title">جارٍ التنفيذ…</string>
-    <string name="read_only_warning">قد لا يُسمح لبرنامج KeePassDX بالكتابة في وحدة التخزين الخاصة بك، وذلك بحسب مدير الملفات الذي تستخدمه.</string>
+    <string name="read_only_warning">قد لا يُسمح لبرنامج NetAigis KeySafe بالكتابة في وحدة التخزين الخاصة بك، وذلك بحسب مدير الملفات الذي تستخدمه.</string>
     <string name="encryption_explanation">خوارزمية تشفير قاعدة البيانات المستخدمة لجميع البيانات</string>
     <string name="unsupported_db_version">إصدار قاعدة البيانات غير مدعوم.</string>
     <string name="build_label">بناء %1$s</string>
@@ -163,7 +162,7 @@
     <string name="menu_appearance_settings">المظهر</string>
     <string name="general">عام</string>
     <string name="autofill">الملء التلقائي</string>
-    <string name="autofill_sign_in_prompt">سجّل الدخول باستخدام KeePassDX</string>
+    <string name="autofill_sign_in_prompt">سجّل الدخول باستخدام NetAigis KeySafe</string>
     <string name="set_credential_provider_service_title">خدمة موفّر بيانات الاعتماد</string>
     <string name="password_size_title">طول كلمة السر المُنشأة</string>
     <string name="password_size_summary">تعيين الطول الافتراضي لكلمات السر المُنشأة</string>
@@ -222,7 +221,7 @@
     <string name="recycle_bin_title">استخدام سلة المحذوفات</string>
     <string name="magic_keyboard_title">Magikeyboard</string>
     <string name="keyboard_name">Magikeyboard</string>
-    <string name="keyboard_label">Magikeyboard (KeePassDX)</string>
+    <string name="keyboard_label">Magikeyboard (NetAigis KeySafe)</string>
     <string name="keyboard_notification_entry_content_title">%1$s متاح على Magikeyboard</string>
     <string name="reset_education_screens_title">إعادة ضبط التلميحات التعليمية</string>
     <string name="education_search_title">اابحث من خلال المدخلات</string>
@@ -273,7 +272,6 @@
     <string name="otp_counter">العداد</string>
     <string name="entry_setup_otp">إعداد رمز كلمة سر لمرة واحدة</string>
     <string name="entry_UUID">UUID</string>
-    <string name="html_about_contribution">لكي نحافظ على حريتنا، ونُصلح الأخطاء، ونضيف ميزات جديدة، ونواصل نشاطنا، فإننا نعتمد على مساهماتكم.</string>
     <string name="content_description_keyfile_checkbox">خانة تأشير ملف المفتاح</string>
     <string name="content_description_password_checkbox">خانة تأشير كلمة السر</string>
     <string name="content_description_add_item">أضف عنصر</string>
@@ -458,7 +456,7 @@
     <string name="education_device_unlock_title">فتح قاعدة بيانات الجهاز</string>
     <string name="hint_icon_name">اسم الأيقونة</string>
     <string name="autofill_manual_selection_title">الاختيار اليدوي</string>
-    <string name="description_app_properties">خصائص KeePassDX لإدارة إعدادات التطبيقات</string>
+    <string name="description_app_properties">خصائص NetAigis KeySafe لإدارة إعدادات التطبيقات</string>
     <string name="warning_empty_recycle_bin">هل تريد حذف جميع العقد من سلة المحذوفات نهائياً؟</string>
     <string name="autofill_save_search_info_title">حفظ معلومات البحث</string>
     <string name="autofill_ask_to_save_data_title">اطلب حفظ البيانات</string>
@@ -551,7 +549,6 @@
     <string name="content_description_entry_foreground_color">لون مقدمة المدخل</string>
     <string name="keyboard_previous_fill_in_summary">العودة تلقائيًا إلى لوحة المفاتيح السابقة بعد تنفيذ \"إجراء المفتاح التلقائي\"</string>
     <string name="download_attachment">ثبِّت %1$s</string>
-    <string name="html_about_privacy">لا يتم جمع أي بيانات للمستخدم، لا يتصل هذا التطبيق بأي خادم، و يعمل محليًا فقط، و يحترم خصوصية المستخدمين احترامًا كاملًا.</string>
     <string name="error_cancel_by_user">تم الإلغاء من قبل المستخدم.</string>
     <string name="show_otp_token_title">عرض رمز OTP</string>
     <string name="show_otp_token_summary">يعرض رموز OTP افتراضيًا</string>
@@ -695,12 +692,12 @@
     <string name="passkeys_backup_state_summary">أشر إلى أن بيانات الاعتماد نُسخت احتياطيًا ومحمية من فقدان جهاز واحد</string>
     <string name="credential_provider_service_subtitle">مفاتيح المرور، موفّر بيانات اعتماد الملء التلقائي</string>
     <string name="passkey">مفتاح المرور</string>
-    <string name="credential_provider_service_name">موفّر بيانات اعتماد KeePassDX</string>
+    <string name="credential_provider_service_name">موفّر بيانات اعتماد NetAigis KeySafe</string>
     <string name="passkey_creation_description">احفظ مفتاح المرور في مدخل جديد</string>
     <string name="passkey_update_description">قم بتحديث مفتاح المرور في %1$s</string>
     <string name="passkey_selection_username">لم يتم العثور على مفتاح المرور</string>
     <string name="passkey_selection_description">تحديد مفتاح مرور موجود</string>
-    <string name="credential_provider_database_username">قاعدة بيانات KeePassDX</string>
+    <string name="credential_provider_database_username">قاعدة بيانات NetAigis KeySafe</string>
     <string name="credential_provider_locked_database_description">تحديد لفتح القفل</string>
     <string name="passkey_username">اسم مستخدم مفتاح المرور</string>
     <string name="passkey_private_key">المفتاح الخاص لمفتاح المرور</string>
@@ -741,7 +738,7 @@
     <string name="show_tags_summary">يعرض الوسوم في قائمة المدخلات</string>
     <string name="benchmark_calculation">الحساب لمدة %1$s ثانية</string>
     <string name="benchmarking">اختبار الأداء…</string>
-    <string name="keyboard_share_browser">المشاركة من %1$s إلى KeePassDX</string>
+    <string name="keyboard_share_browser">المشاركة من %1$s إلى NetAigis KeySafe</string>
     <string name="error_memory_too_large">«استخدام الذاكرة» مرتفع جدًّا. سيتم ضبطه على %1$s.</string>
     <string name="error_parallelism_too_large">«التوازي» مرتفع جدًّا. سيتم ضبطه على %1$s.</string>
     <string name="error_missing_parent">لا يمكن تنفيذ هذا الإجراء دون وجود ولي الأمر.</string>

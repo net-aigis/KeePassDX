@@ -16,14 +16,14 @@ android {
     val gmsPackage = "com.google.android.gms"
 
     defaultConfig {
-        applicationId = "com.kunzisoft.keepass"
+        applicationId = "de.netaigis.keysafe"
         minSdk = 19
         targetSdk = 36
-        versionCode = 45500
-        versionName = "4.5.5"
+        versionCode = 1000
+        versionName = "0.1.0-dev"
         multiDexEnabled = true
 
-        testApplicationId = "com.kunzisoft.keepass.tests"
+        testApplicationId = "de.netaigis.keysafe.tests"
         testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
 
         buildConfigField("String", "GOOGLE_PLAY_SERVICES_PACKAGE", "\"$gmsPackage\"")
@@ -72,7 +72,7 @@ android {
             dimension = "version"
             applicationIdSuffix = ".free"
             buildConfigField("String", "BUILD_VERSION", "\"free\"")
-            buildConfigField("boolean", "CLOSED_STORE", "true")
+            buildConfigField("boolean", "CLOSED_STORE", "false")
             buildConfigField(
                 "String[]", "STYLES_DISABLED",
                 "{\"KeepassDXStyle_Blue\"," +
@@ -87,7 +87,7 @@ android {
                     "\"KeepassDXStyle_Dynamic_Night\"}"
             )
             buildConfigField("String[]", "ICON_PACKS_DISABLED", "{}")
-            manifestPlaceholders["googleAndroidBackupAPIKey"] = "AEdPqrEAAAAIbRfbV8fHLItXo8OcHwrO0sSNblqhPwkc0DPTqg"
+            manifestPlaceholders["googleAndroidBackupAPIKey"] = "unused"
             manifestPlaceholders["googlePlayServicesPackage"] = gmsPackage
         }
     }

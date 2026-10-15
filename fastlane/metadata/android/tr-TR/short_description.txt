@@ -1,1 +1,1 @@
-Yerel ve açık kaynaklı bir kasada geçiş anahtarı / parolalarınızı yönetin
+KDBX password manager with optional HTTPS coordination.

@@ -1,1 +1,1 @@
-Upravljaj lozinkom/ključem u lokalnom i otvorenom trezoru
+KDBX password manager with optional HTTPS coordination.

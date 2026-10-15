@@ -153,7 +153,7 @@ class DatabaseKDBX : DatabaseVersioned<UUID, UUID, GroupKDBX, EntryKDBX> {
 
     val tagPool = Tags()
 
-    var localizedAppName = "KeePassDX"
+    var localizedAppName = "NetAigis KeySafe"
 
     init {
         kdfEngine?.onParametersChanged = {

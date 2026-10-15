@@ -39,7 +39,6 @@
     <string name="decrypting_db">Розшифрування вмісту бази даних…</string>
     <string name="default_checkbox">Використовувати як типову базу даних</string>
     <string name="digits">Цифри</string>
-    <string name="html_about_licence">KeePassDX © %1$d Kunzisoft має &lt;strong&gt;відкритим код&lt;/strong&gt; та &lt;strong&gt;не містить реклами&lt;/strong&gt;. \nВін надається «як є», на умовах ліцензії &lt;strong&gt;GPLv3&lt;/strong&gt;, без жодних гарантій.</string>
     <string name="select_database_file">Відкрити наявне сховище</string>
     <string name="entry_accessed">Останній доступ</string>
     <string name="entry_cancel">Скасувати</string>
@@ -55,7 +54,7 @@
     <string name="entry_url">URL</string>
     <string name="entry_user_name">Ім’я користувача</string>
     <string name="error_arc4">Потоковий шифр Arcfour не підтримується.</string>
-    <string name="error_can_not_handle_uri">KeePassDX не вдалося обробити цей URI.</string>
+    <string name="error_can_not_handle_uri">NetAigis KeySafe не вдалося обробити цей URI.</string>
     <string name="error_file_not_create">Не вдалося створити файл.</string>
     <string name="error_invalid_db">Не вдалося прочитати базу даних.</string>
     <string name="error_invalid_path">Переконайтеся, що шлях правильний.</string>
@@ -82,7 +81,7 @@
     <string name="list_size_summary">Розмір тексту в списку елементів</string>
     <string name="loading_database">Завантаження бази даних…</string>
     <string name="lowercase">Малі літери</string>
-    <string name="about">Про KeePassDX</string>
+    <string name="about">Про NetAigis KeySafe</string>
     <string name="menu_change_key_settings">Змінити головний ключ</string>
     <string name="settings">Налаштування</string>
     <string name="menu_database_settings">Налаштування бази даних</string>
@@ -163,7 +162,7 @@
     <string name="selection_mode">Режим вибору</string>
     <string name="contains_duplicate_uuid">База даних містить дублікати UUID.</string>
     <string name="contains_duplicate_uuid_procedure">Згенерувати нові UUID для дублікатів і продовжити?</string>
-    <string name="read_only_warning">Залежно від файлового менеджера KeePassDX може не мати дозволу на запис у сховище.</string>
+    <string name="read_only_warning">Залежно від файлового менеджера NetAigis KeySafe може не мати дозволу на запис у сховище.</string>
     <string name="read_only">Лише читання</string>
     <string name="protection">Захист</string>
     <string name="auto_focus_search_summary">Відкривати пошук під час відкриття бази даних</string>
@@ -225,7 +224,6 @@
     <string name="entry_attachments">Вкладення</string>
     <string name="entry_history">Історія</string>
     <string name="entry_UUID">UUID</string>
-    <string name="html_about_contribution">Щоб &lt;strong&gt;зберігати нашу свободу&lt;/strong&gt;, &lt;strong&gt;виправляти помилки&lt;/strong&gt;, &lt;strong&gt;додавати нові функції&lt;/strong&gt; та &lt;strong&gt;завжди залишатися активними&lt;/strong&gt;, ми розраховуємо на ваш &lt;strong&gt;внесок&lt;/strong&gt;.</string>
     <string name="content_description_keyboard_close_fields">Закрити поля</string>
     <string name="content_description_remove_field">Вилучити поле</string>
     <string name="entry_add_attachment">Додати вкладення</string>
@@ -320,7 +318,7 @@
     <string name="keyboard_notification_entry_title">Сповіщення про запис</string>
     <string name="keyboard_entry_category">Запис</string>
     <string name="keyboard_setting_label">Налаштування Magikeyboard</string>
-    <string name="keyboard_label">Magikeyboard (KeePassDX)</string>
+    <string name="keyboard_label">Magikeyboard (NetAigis KeySafe)</string>
     <string name="keyboard_name">Magikeyboard</string>
     <string name="magic_keyboard_explanation_summary">Увімкнути власну клавіатуру для введення паролів і всіх полів ідентифікації</string>
     <string name="magic_keyboard_title">Magikeyboard</string>
@@ -376,7 +374,7 @@
     <string name="autofill_preference_title">Налаштування автозаповнення</string>
     <string name="set_credential_provider_service_title">Служба постачальника облікових даних</string>
     <string name="autofill_explanation_summary">Налаштувати автозаповнення для швидкого заповнення форм в інших застосунках</string>
-    <string name="autofill_sign_in_prompt">Увійти через KeePassDX</string>
+    <string name="autofill_sign_in_prompt">Увійти через NetAigis KeySafe</string>
     <string name="autofill">Автозаповнення</string>
     <string name="general">Загальні</string>
     <string name="biometric">Біометрія</string>
@@ -517,7 +515,7 @@
     <string name="success_export_app_properties">Налаштування застосунку експортовано</string>
     <string name="error_import_app_properties">Помилка під час імпорту налаштувань застосунку.</string>
     <string name="success_import_app_properties">Налаштування застосунку імпортовано</string>
-    <string name="description_app_properties">Властивості KeePassDX для керування налаштуваннями застосунку</string>
+    <string name="description_app_properties">Властивості NetAigis KeySafe для керування налаштуваннями застосунку</string>
     <string name="export_app_properties_summary">Створити файл для експорту налаштувань застосунку</string>
     <string name="export_app_properties_title">Експортувати налаштування застосунку</string>
     <string name="import_app_properties_summary">Вибрати файл для імпорту налаштувань застосунку</string>
@@ -634,7 +632,6 @@
     <string name="error_location_unknown">Розташування бази даних невідоме, тому дію неможливо виконати.</string>
     <string name="error_empty_key">Ключ не може бути порожнім.</string>
     <string name="corrupted_file">Пошкоджений файл.</string>
-    <string name="html_about_privacy">&lt;strong&gt;Жодні дані користувача не збираються&lt;/strong&gt;, цей застосунок не під\'єднується до жодного сервера, працює лише локально та цілком поважає приватність користувачів.</string>
     <string name="auto_type">Автовведення</string>
     <string name="merge_success">Об’єднання успішно завершено</string>
     <string name="menu_app_settings_summary">Пошук, блокування, історія, властивості</string>
@@ -700,12 +697,12 @@
     <string name="passkeys_backup_state_summary">Позначати, що облікові дані мають резервну копію та захищені від втрати одного пристрою</string>
     <string name="credential_provider_service_subtitle">Ключі доступу, постачальник облікових даних для автозаповнення</string>
     <string name="passkey">Ключ доступу</string>
-    <string name="credential_provider_service_name">Постачальник облікових даних KeePassDX</string>
+    <string name="credential_provider_service_name">Постачальник облікових даних NetAigis KeySafe</string>
     <string name="passkey_creation_description">Зберегти ключ доступу в новому записі</string>
     <string name="passkey_update_description">Оновити ключ доступу в %1$s</string>
     <string name="passkey_selection_username">Ключ доступу не знайдено</string>
     <string name="passkey_selection_description">Вибрати наявний ключ доступу</string>
-    <string name="credential_provider_database_username">База даних KeePassDX</string>
+    <string name="credential_provider_database_username">База даних NetAigis KeySafe</string>
     <string name="credential_provider_locked_database_description">Вибрати, щоб розблокувати</string>
     <string name="passkey_username">Ім’я користувача ключа доступу</string>
     <string name="passkey_private_key">Закритий ключ ключа доступу</string>
@@ -746,7 +743,7 @@
     <string name="show_tags_summary">Показувати мітки у списку записів</string>
     <string name="benchmark_calculation">Обчислити для %1$s с</string>
     <string name="benchmarking">Тестування…</string>
-    <string name="keyboard_share_browser">Поділитися з %1$s у KeePassDX</string>
+    <string name="keyboard_share_browser">Поділитися з %1$s у NetAigis KeySafe</string>
     <string name="error_memory_too_large">Значення «Використання пам’яті» завелике. Установлено %1$s.</string>
     <string name="error_parallelism_too_large">Значення «Паралелізм» завелике. Установлено %1$s.</string>
     <string name="error_missing_parent">Цю дію не можна виконати без батьківського елемента.</string>

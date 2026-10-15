@@ -48,10 +48,7 @@ class AboutActivity : StylishActivity() {
         supportActionBar?.setDisplayHomeAsUpEnabled(true)
         supportActionBar?.setDisplayShowHomeEnabled(true)
 
-        val appName = if (this.isContributingUser())
-            getString(R.string.app_name) + " " + getString(R.string.app_name_part3)
-         else
-            getString(R.string.app_name)
+        val appName = getString(R.string.app_name)
         findViewById<TextView>(R.id.activity_about_app_name).text = appName
 
         var version: String

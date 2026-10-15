@@ -94,7 +94,7 @@
     <string name="entry_url">URL</string>
     <string name="entry_user_name">Nume de utilizator</string>
     <string name="error_arc4">Cifrarea fluxului Arcfour nu este acceptată.</string>
-    <string name="error_can_not_handle_uri">Nu s-a putut gestiona acest URI în KeePassDX.</string>
+    <string name="error_can_not_handle_uri">Nu s-a putut gestiona acest URI în NetAigis KeySafe.</string>
     <string name="error_file_not_create">Nu s-a putut crea fișierul.</string>
     <string name="error_invalid_db">Nu s-a putut citi baza de date.</string>
     <string name="error_invalid_path">Asigură-te că calea este corectă.</string>
@@ -177,8 +177,6 @@
     <string name="minus">Mai puțin</string>
     <string name="never">Niciodată</string>
     <string name="no_results">Nu există rezultate de căutare</string>
-    <string name="html_about_licence">KeePassDX © %1$d Kunzisoft este &lt;strong&gt;open source&lt;/strong&gt; și &lt;strong&gt;fără reclame&lt;/strong&gt;. \nEste furnizat ca atare, sub licență &lt;strong&gt;GPLv3&lt;/strong&gt;, fără nicio garanție.</string>
-    <string name="html_about_contribution">Pentru a ne &lt;strong&gt;păstra libertatea&lt;/strong&gt;, &lt;strong&gt;pentru a remedia erori&lt;/strong&gt;, &lt;strong&gt;pentru a adăuga funcții&lt;/strong&gt; și &lt;strong&gt;pentru a fi mereu activi&lt;/strong&gt;, ne bazăm pe &lt;strong&gt;contribuția&lt;/strong&gt; ta.</string>
     <string name="about">Despre</string>
     <string name="no_url_handler">Instalează un browser web pentru a deschide această adresă URL.</string>
     <string name="select_database_file">Deschide seiful existent</string>
@@ -187,7 +185,7 @@
     <string name="progress_title">Se lucrează…</string>
     <string name="protection">Protecție</string>
     <string name="read_only">Protejat la scriere</string>
-    <string name="read_only_warning">În funcție de managerul de fișiere, este posibil ca KeePassDX să nu aibă permisiunea de a scrie în spațiul de stocare.</string>
+    <string name="read_only_warning">În funcție de managerul de fișiere, este posibil ca NetAigis KeySafe să nu aibă permisiunea de a scrie în spațiul de stocare.</string>
     <string name="contains_duplicate_uuid">Baza de date conține UUID-uri duplicate.</string>
     <string name="contains_duplicate_uuid_procedure">Rezolvi problema prin generarea de noi UUID-uri pentru duplicate ca să continui?</string>
     <string name="selection_mode">Mod de selectare</string>
@@ -234,7 +232,7 @@
     <string name="biometric">Biometric</string>
     <string name="general">General</string>
     <string name="autofill">Completare automată</string>
-    <string name="autofill_sign_in_prompt">Conectează-te cu KeePassDX</string>
+    <string name="autofill_sign_in_prompt">Conectează-te cu NetAigis KeySafe</string>
     <string name="autofill_explanation_summary">Configurează completarea automată pentru a completa rapid formulare în alte aplicații</string>
     <string name="set_credential_provider_service_title">Serviciu furnizor de acreditări</string>
     <string name="password_size_title">Dimensiunea parolei generate</string>
@@ -303,7 +301,7 @@
     <string name="magic_keyboard_explanation_summary">Activează o tastatură personalizată care să completeze parolele și toate câmpurile de identitate</string>
     <string name="device_keyboard_setting_title">Setări ale tastaturii dispozitivului</string>
     <string name="keyboard_name">Tastatură magică</string>
-    <string name="keyboard_label">Tastatură magică (KeePassDX)</string>
+    <string name="keyboard_label">Tastatură magică (NetAigis KeySafe)</string>
     <string name="keyboard_setting_label">Setări tastatură magică</string>
     <string name="keyboard_entry_category">Intrare</string>
     <string name="keyboard_notification_entry_title">Informații de notificare</string>
@@ -455,7 +453,6 @@
     <string name="error_field_name_already_exists">Numele câmpului există deja.</string>
     <string name="navigation_drawer_open">Sertar de navigare deschis</string>
     <string name="content_description_passphrase_word_count">Numărul de cuvinte al frazei de acces</string>
-    <string name="html_about_privacy">&lt;strong&gt;Nu sunt colectate date ale utilizatorului&lt;/strong&gt;, această aplicație nu se conectează la niciun server, funcționează doar local și respectă pe deplin confidențialitatea utilizatorilor.</string>
     <string name="current_group">Grupul curent</string>
     <string name="search_filters">Filtre de căutare</string>
     <string name="navigation_drawer_close">Sertar de navigare închis</string>
@@ -546,7 +543,7 @@
     <string name="later">Mai târziu</string>
     <string name="success_import_app_properties">Setările aplicației au fost importate</string>
     <string name="warning_sure_add_file">Adaugi fișierul oricum?</string>
-    <string name="description_app_properties">Proprietățile KeePassDX pentru a gestiona setările aplicației</string>
+    <string name="description_app_properties">Proprietățile NetAigis KeySafe pentru a gestiona setările aplicației</string>
     <string name="warning_keyfile_integrity">Hash-ul fișierului nu este garantat, deoarece Android își poate schimba datele din mers. Schimbă extensia fișierului în .bin pentru o integritate corectă.</string>
     <string name="temp_device_unlock_enable_summary">Nu stoca niciun conținut criptat pentru a utiliza deblocarea dispozitivului</string>
     <string name="device_unlock_tap_delete">Atinge pentru a șterge cheile de deblocare a dispozitivului</string>
@@ -722,14 +719,14 @@
     <string name="benchmarking">Se testează…</string>
     <string name="keyboard_auto_switch_title">Comutator automat Magikeyboard</string>
     <string name="keyboard_auto_switch_summary">Încearcă comutarea automată la Tastatura magică la completarea înregistrărilor</string>
-    <string name="keyboard_share_browser">Distribuie din %1$s către KeePassDX</string>
+    <string name="keyboard_share_browser">Distribuie din %1$s către NetAigis KeySafe</string>
     <string name="autofill_share_magikeyboard_title">Distribuie către Tastatura magică</string>
     <string name="autofill_share_magikeyboard_summary">Partajează intrările preluate de la completarea automată la Tastatura magică</string>
     <string name="education_user_verification_title">Verificare pentru acțiuni sensibile</string>
     <string name="education_user_verification_summary">Schimbă modul de verificare a utilizatorului pentru sesiune.\n\n„Verificarea utilizatorului activată” verifică acțiunea în câmpurile protejate și setările bazei de date.\n„Verificarea utilizatorului dezactivată” permite modificarea oricăror date din baza de date fără verificare.</string>
     <string name="passkey">Cheie de acces</string>
-    <string name="credential_provider_service_name">Furnizor de acreditări KeePassDX</string>
-    <string name="credential_provider_database_username">Baza de date KeePassDX</string>
+    <string name="credential_provider_service_name">Furnizor de acreditări NetAigis KeySafe</string>
+    <string name="credential_provider_database_username">Baza de date NetAigis KeySafe</string>
     <string name="passkey_creation_description">Salvează cheia de acces într-o nouă înregistrare</string>
     <string name="passkey_update_description">Actualizează cheia de acces în %1$s</string>
     <string name="passkey_selection_username">Nu a fost găsită nicio cheie de acces</string>

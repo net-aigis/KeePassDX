@@ -1,1 +1,1 @@
-Jelszavak és kulcsok kezelése helyi, nyílt forráskódú tárolóban
+KDBX password manager with optional HTTPS coordination.

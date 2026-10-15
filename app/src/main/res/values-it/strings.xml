@@ -44,8 +44,6 @@
     <string name="decrypting_db">Decodifica contenuto database…</string>
     <string name="default_checkbox">Usa come database predefinito</string>
     <string name="digits">Numeri</string>
-    <string name="html_about_licence">KeePassDX © %1$d Kunzisoft è un programma &lt;strong&gt;open-source&lt;/strong&gt; e &lt;strong&gt;senza pubblicità&lt;/strong&gt;.
-\nViene distribuito sotto le condizioni della licenza &lt;strong&gt;GPL versione 3&lt;/strong&gt; o successiva, senza alcuna garanzia.</string>
     <string name="entry_notes">Note</string>
     <string name="select_database_file">Apri una cassaforte esistente</string>
     <string name="entry_accessed">Ultimo accesso</string>
@@ -62,7 +60,7 @@
     <string name="entry_url">URL</string>
     <string name="entry_user_name">Nome utente</string>
     <string name="error_arc4">La codifica a flusso Arcfour non è supportata.</string>
-    <string name="error_can_not_handle_uri">KeePassDX non può gestire questo URI.</string>
+    <string name="error_can_not_handle_uri">NetAigis KeySafe non può gestire questo URI.</string>
     <string name="error_file_not_create">Impossibile creare il file.</string>
     <string name="error_invalid_db">Impossibile leggere il database.</string>
     <string name="error_invalid_path">Assicurati che il percorso sia corretto.</string>
@@ -175,7 +173,7 @@
     <string name="menu_appearance_settings">Aspetto</string>
     <string name="general">Generale</string>
     <string name="autofill">Autocompletamento</string>
-    <string name="autofill_sign_in_prompt">Accedi con KeePassDX</string>
+    <string name="autofill_sign_in_prompt">Accedi con NetAigis KeySafe</string>
     <string name="set_credential_provider_service_title">Servizio predefinito di autocompletamento</string>
     <string name="autofill_explanation_summary">Configura l\'autocompletamento per riempire velocemente i campi in altre app</string>
     <string name="password_size_title">Dimensione password generata</string>
@@ -279,7 +277,7 @@
     <string name="clipboard">Appunti</string>
     <string name="build_label">Versione %1$s</string>
     <string name="keyboard_name">Magitastiera</string>
-    <string name="keyboard_label">Magitastiera (KeePassDX)</string>
+    <string name="keyboard_label">Magitastiera (NetAigis KeySafe)</string>
     <string name="keyboard_setting_label">Impostazioni Magitastiera</string>
     <string name="keyboard_entry_category">Elemento</string>
     <string name="keyboard_entry_timeout_title">Scadenza</string>
@@ -357,7 +355,6 @@
     <string name="auto_focus_search_title">Ricerca rapida</string>
     <string name="menu_delete_entry_history">Cancella cronologia</string>
     <string name="menu_restore_entry_history">Ripristina cronologia</string>
-    <string name="html_about_contribution">Per poter &lt;strong&gt;mantenere la nostra libertà&lt;/strong&gt;, &lt;strong&gt;correggere errori&lt;/strong&gt;, &lt;strong&gt;aggiungere funzionalità&lt;/strong&gt; ed &lt;strong&gt;essere sempre attivi&lt;/strong&gt;, facciamo affidamento sul tuo &lt;strong&gt;contributo&lt;/strong&gt;.</string>
     <string name="contact">Contatto</string>
     <string name="keystore_not_accessible">Il keystore non è inizializzato correttamente.</string>
     <string name="menu_master_key_settings">Impostazioni della chiave principale</string>
@@ -533,7 +530,7 @@
     <string name="success_export_app_properties">Impostazioni dell\'app esportate</string>
     <string name="error_import_app_properties">Errore durante l\'importazione delle impostazioni dell\'app.</string>
     <string name="success_import_app_properties">Impostazioni dell\'app importate</string>
-    <string name="description_app_properties">Proprietà di KeePassDX per gestire le impostazioni dell\'app</string>
+    <string name="description_app_properties">Proprietà di NetAigis KeySafe per gestire le impostazioni dell\'app</string>
     <string name="export_app_properties_summary">Crea un file in cui esportare le impostazioni dell\'app</string>
     <string name="export_app_properties_title">Esporta le impostazioni dell\'app</string>
     <string name="import_app_properties_summary">Seleziona un file da cui importare le impostazioni dell\'app</string>
@@ -653,7 +650,6 @@
     <string name="error_empty_key">La chiave non può essere vuota.</string>
     <string name="enable_screenshot_mode_title">Modalità di cattura schermo</string>
     <string name="screenshot_mode_banner_text">Modalità di cattura schermo</string>
-    <string name="html_about_privacy">&lt;strong&gt;Nessun dato dell\'utente viene prelevato&lt;/strong&gt;, questa applicazione non si connette ad alcun server, funziona solo in locale e rispetta pienamente la privacy degli utenti.</string>
     <string name="auto_type">Auto-digita</string>
     <string name="merge_success">Unione completata correttamente</string>
     <string name="info">Info</string>
@@ -723,12 +719,12 @@
     <string name="passkeys_backup_state_summary">Indica che le credenziali sono dietro backup e protette contro la perdita di un singolo dispositivo</string>
     <string name="credential_provider_service_subtitle">Passkey, fornitore di autocompletamento credenziali</string>
     <string name="passkey">Passkey</string>
-    <string name="credential_provider_service_name">Fornitore di credenziali KeePassDX</string>
+    <string name="credential_provider_service_name">Fornitore di credenziali NetAigis KeySafe</string>
     <string name="passkey_creation_description">Salva la passkey in una nuova voce</string>
     <string name="passkey_update_description">Aggiorna la passkey in %1$s</string>
     <string name="passkey_selection_username">Nessuna passkey trovata</string>
     <string name="passkey_selection_description">Seleziona una passkey esistente</string>
-    <string name="credential_provider_database_username">Database di KeePassDX</string>
+    <string name="credential_provider_database_username">Database di NetAigis KeySafe</string>
     <string name="credential_provider_locked_database_description">Seleziona per sbloccare</string>
     <string name="passkey_username">Nome utente passkey</string>
     <string name="passkey_private_key">Chiave privata passkey</string>
@@ -769,7 +765,7 @@
     <string name="show_tags_summary">Mostra le etichette nell\'elenco delle voci</string>
     <string name="benchmark_calculation">Calcola per %1$s s</string>
     <string name="benchmarking">Analisi comparativa…</string>
-    <string name="keyboard_share_browser">Condividi da %1$s a KeePassDX</string>
+    <string name="keyboard_share_browser">Condividi da %1$s a NetAigis KeySafe</string>
     <string name="error_load_database_KDF_parallelism">Parallelismo KDF troppo alto.</string>
     <string name="error_memory_too_large">\"Utilizzo di memoria\" troppo alto. Lo imposto a %1$s.</string>
     <string name="error_parallelism_too_large">\"Parallelismo\" troppo alto. Lo imposto a %1$s.</string>

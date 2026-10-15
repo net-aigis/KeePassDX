@@ -42,8 +42,6 @@
     <string name="decrypting_db">Расшифровка базы…</string>
     <string name="default_checkbox">База по умолчанию</string>
     <string name="digits">Цифры</string>
-    <string name="html_about_licence">KeePassDX © %1$d Kunzisoft — это программное обеспечение &lt;strong&gt;с открытым исходным кодом&lt;/strong&gt; и &lt;strong&gt;без рекламы&lt;/strong&gt;.
-\nРаспространяется под лицензией &lt;strong&gt;GPLv3&lt;/strong&gt; без каких-либо гарантий.</string>
     <string name="select_database_file">Открыть базу паролей</string>
     <string name="entry_accessed">Доступ</string>
     <string name="entry_cancel">Назад</string>
@@ -60,7 +58,7 @@
     <string name="entry_url">Ссылка</string>
     <string name="entry_user_name">Пользователь</string>
     <string name="error_arc4">Потоковый шифр Arcfour не поддерживается.</string>
-    <string name="error_can_not_handle_uri">Невозможно обработать указанный URI в KeePassDX.</string>
+    <string name="error_can_not_handle_uri">Невозможно обработать указанный URI в NetAigis KeySafe.</string>
     <string name="error_file_not_create">Невозможно создать файл.</string>
     <string name="error_invalid_db">Невозможно прочитать базу.</string>
     <string name="error_invalid_path">Убедитесь, что путь указан правильно.</string>
@@ -113,7 +111,7 @@
     <string name="progress_title">Обработка…</string>
     <string name="protection">Защита</string>
     <string name="read_only">Только чтение</string>
-    <string name="read_only_warning">KeePassDX необходимо разрешение на запись, чтобы иметь возможность изменить что-либо в вашей базе.</string>
+    <string name="read_only_warning">NetAigis KeySafe необходимо разрешение на запись, чтобы иметь возможность изменить что-либо в вашей базе.</string>
     <string name="content_description_remove_from_list">Убрать из списка</string>
     <string name="root">Корень</string>
     <string name="rounds">Раунды шифрования</string>
@@ -178,7 +176,7 @@
     <string name="menu_appearance_settings">Внешний вид</string>
     <string name="general">Общие</string>
     <string name="autofill">Автозаполнение</string>
-    <string name="autofill_sign_in_prompt">Войти с KeePassDX</string>
+    <string name="autofill_sign_in_prompt">Войти с NetAigis KeySafe</string>
     <string name="autofill_explanation_summary">Настройте службу для быстрого заполнения форм в других приложениях</string>
     <string name="set_credential_provider_service_title">Служба автозаполнения</string>
     <string name="password_size_title">Длина создаваемого пароля</string>
@@ -275,7 +273,7 @@
     <string name="icon_pack_choose_title">Набор значков</string>
     <string name="icon_pack_choose_summary">Набор значков, используемый в приложении</string>
     <string name="keyboard_name">Magikeyboard</string>
-    <string name="keyboard_label">Magikeyboard (KeePassDX)</string>
+    <string name="keyboard_label">Magikeyboard (NetAigis KeySafe)</string>
     <string name="keyboard_setting_label">Настройки Magikeyboard</string>
     <string name="build_label">Сборка %1$s</string>
     <string name="keyboard_entry_category">Запись</string>
@@ -396,7 +394,6 @@
     <string name="hide_expired_entries_summary">Не показывать записи с истёкшим сроком действия</string>
     <string name="contact">Контактная информация</string>
     <string name="contribution">Помощь проекту</string>
-    <string name="html_about_contribution">Для &lt;strong&gt;сохранения нашей независимости&lt;/strong&gt;, &lt;strong&gt;исправления ошибок&lt;/strong&gt;, &lt;strong&gt;добавления новых функций&lt;/strong&gt; и &lt;strong&gt;поддержания разработки в активном состоянии&lt;/strong&gt;, мы рассчитываем на вашу &lt;strong&gt;поддержку&lt;/strong&gt;.</string>
     <string name="auto_focus_search_title">Быстрый поиск</string>
     <string name="auto_focus_search_summary">Открывать поисковый запрос при открытии базы</string>
     <string name="remember_database_locations_title">Помнить расположение баз</string>
@@ -529,7 +526,7 @@
     <string name="success_export_app_properties">Настройки приложения экспортированы</string>
     <string name="error_import_app_properties">Ошибка при импорте настроек приложения.</string>
     <string name="success_import_app_properties">Настройки приложения импортированы</string>
-    <string name="description_app_properties">Управление настройками приложения KeePassDX</string>
+    <string name="description_app_properties">Управление настройками приложения NetAigis KeySafe</string>
     <string name="export_app_properties_summary">Создать резервную копию настроек</string>
     <string name="export_app_properties_title">Экспорт настроек</string>
     <string name="import_app_properties_summary">Выбрать резервную копию настроек</string>
@@ -650,7 +647,6 @@
     <string name="enable_screenshot_mode_summary">Разрешать сторонним приложениям делать снимки или запись экрана приложения</string>
     <string name="waiting_challenge_request">Ожидание запроса на вызов…</string>
     <string name="waiting_challenge_response">Ожидание ответа на вызов…</string>
-    <string name="html_about_privacy">&lt;strong&gt;Никакие пользовательские данные не собираются&lt;/strong&gt;, это приложение не подключается ни к одному серверу, работает исключительно локально и полностью соблюдает конфиденциальность пользователей.</string>
     <string name="auto_type">Автонабор</string>
     <string name="merge_success">Объединение выполнено</string>
     <string name="later">Позже</string>
@@ -720,12 +716,12 @@
     <string name="passkeys_backup_state_summary">Указывает, резервируются ли учётные данные и защищены ли они от потери единственного устройства</string>
     <string name="credential_provider_service_subtitle">Ключи доступа, поставщик учётных данных для автозаполнения</string>
     <string name="passkey">Ключ доступа</string>
-    <string name="credential_provider_service_name">Поставщик учётных данных KeePassDX</string>
+    <string name="credential_provider_service_name">Поставщик учётных данных NetAigis KeySafe</string>
     <string name="passkey_creation_description">Сохранить ключ доступа в новой записи</string>
     <string name="passkey_update_description">Обновить ключ доступа в %1$s</string>
     <string name="passkey_selection_username">Ключ доступа не найден</string>
     <string name="passkey_selection_description">Выберите существующий ключ доступа</string>
-    <string name="credential_provider_database_username">База KeePassDX</string>
+    <string name="credential_provider_database_username">База NetAigis KeySafe</string>
     <string name="credential_provider_locked_database_description">Выберите для разблокировки</string>
     <string name="passkey_username">Пользователь ключа доступа</string>
     <string name="passkey_private_key">Закрытый ключ доступа</string>
@@ -765,7 +761,7 @@
     <string name="show_tags_title">Показывать метки</string>
     <string name="show_tags_summary">Показывать метки в списке записей</string>
     <string name="benchmarking">Тестирование…</string>
-    <string name="keyboard_share_browser">Поделиться из %1$s в KeePassDX</string>
+    <string name="keyboard_share_browser">Поделиться из %1$s в NetAigis KeySafe</string>
     <string name="benchmark_calculation">Вычислено за %1$s сек.</string>
     <string name="error_memory_too_large">Значение использования памяти слишком велико. Предельное значение %1$s.</string>
     <string name="error_parallelism_too_large">Значение уровня параллелизма слишком велико. Предельное значение %1$s.</string>

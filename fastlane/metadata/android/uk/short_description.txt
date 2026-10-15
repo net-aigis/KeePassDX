@@ -1,1 +1,1 @@
-Керування ключами доступу / паролями в локальному сховищі з відкритим кодом
+KDBX password manager with optional HTTPS coordination.

@@ -1,8 +1,8 @@
-name: Coordinated KDBX - KeePassDX build and tests
+name: NetAigis KeySafe - Android build and tests
 
 on:
   push:
-    branches: ["feature/coordinated-kdbx-20261014", "security/dx-hardening-20261015"]
+    branches: ["feature/coordinated-kdbx-20261014", "security/dx-hardening-20261015", "feature/netaigis-keysafe-20261015"]
   pull_request:
   workflow_dispatch:
 
@@ -24,6 +24,11 @@ jobs:
           packages: ''
       - name: Install Android platform
         run: sdkmanager 'platforms;android-36' 'build-tools;36.0.0'
+      - name: Verify fork identity
+        run: |
+          grep -Fq 'applicationId = "de.netaigis.keysafe"' app/build.gradle.kts
+          grep -Fq 'NetAigis KeySafe' app/src/main/res/values/donottranslate.xml
+          grep -Fq 'android:authorities="${applicationId}.coordinator"' app/src/main/AndroidManifest.xml
       - name: Run Android unit tests and compile app
         run: |
           chmod +x ./gradlew
@@ -33,6 +38,6 @@ jobs:
         if: success()
         uses: actions/upload-artifact@v4
         with:
-          name: keepassdx-libre-debug-unsigned
+          name: netaigis-keysafe-libre-debug
           path: app/build/outputs/apk/libre/debug/*.apk
           if-no-files-found: error

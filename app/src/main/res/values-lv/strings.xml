@@ -57,7 +57,7 @@
     <string name="entry_url">URL</string>
     <string name="entry_user_name">Lietotājvārds</string>
     <string name="error_arc4">Arcfour plūsmas šifrs nav atbalstīts.</string>
-    <string name="error_can_not_handle_uri">KeePassDX nevarēja apstrādāt šo URI.</string>
+    <string name="error_can_not_handle_uri">NetAigis KeySafe nevarēja apstrādāt šo URI.</string>
     <string name="error_file_not_create">Nevarēja izveidot datni.</string>
     <string name="error_invalid_db">Nevarēja nolasīt datubāzi.</string>
     <string name="error_invalid_path">Jāpārliecinās, ka ceļš ir pareizs.</string>
@@ -131,7 +131,6 @@
     <string name="encryption">Šifrēšana</string>
     <string name="extended_ASCII">Paplašinātais ASCII</string>
     <string name="allow">Atļaut</string>
-    <string name="html_about_licence">KeePassDX © %1$d Kunzisoft — &lt;strong&gt;atvērtā pirmkoda&lt;/strong&gt; lietotne &lt;strong&gt;bez reklāmām&lt;/strong&gt;.\nTā tiek izplatīta tāda, kāda tā ir, saskaņā ar &lt;strong&gt;GPLv3&lt;/strong&gt; licenci bez jebkādām garantijām.</string>
     <string name="menu_copy">Kopēt</string>
     <string name="education_lock_title">Bloķēt datubāzi</string>
     <string name="character_count">Rakstzīmju skaits: %1$d</string>

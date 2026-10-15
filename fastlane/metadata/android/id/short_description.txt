@@ -1,1 +1,1 @@
-Kelola Passkey / Kata Sandi di brankas lokal dan open source
+KDBX password manager with optional HTTPS coordination.

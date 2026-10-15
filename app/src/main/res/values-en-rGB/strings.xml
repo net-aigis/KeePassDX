@@ -71,7 +71,6 @@
     <string name="content_description_password_length">Password length</string>
     <string name="content_description_keyboard_close_fields">Close fields</string>
     <string name="retrieving_db_key">Retrieving database key…</string>
-    <string name="html_about_contribution">In order to &lt;strong&gt;keep our freedom&lt;/strong&gt;, &lt;strong&gt;fix bugs&lt;/strong&gt;, &lt;strong&gt;add features&lt;/strong&gt; and &lt;strong&gt;to be always active&lt;/strong&gt;, we count on your &lt;strong&gt;contribution&lt;/strong&gt;.</string>
     <string name="entry_accessed">Accessed</string>
     <string name="entry_confpassword">Confirm password</string>
     <string name="clipboard_error_clear">Could not clear clipboard</string>
@@ -89,8 +88,6 @@
     <string name="entry_add_attachment">Add attachment</string>
     <string name="content_description_remove_field">Remove field</string>
     <string name="content_description_update_from_list">Update</string>
-    <string name="html_about_licence">KeePassDX © %1$d Kunzisoft is &lt;strong&gt;open source&lt;/strong&gt; and &lt;strong&gt;without advertising&lt;/strong&gt;. \nIt is provided as is, under &lt;strong&gt;GPLv3&lt;/strong&gt; license, without any warranty.</string>
-    <string name="html_about_privacy">&lt;strong&gt;No user data is retrieved&lt;/strong&gt;, this application does not connect to any server, works only locally and fully respects the privacy of users.</string>
     <string name="entry_cancel">Cancel</string>
     <string name="entry_notes">Notes</string>
     <string name="entry_created">Created</string>
@@ -166,7 +163,7 @@
     <string name="version">Version</string>
     <string name="entry_otp">OTP</string>
     <string name="entry_url">URL</string>
-    <string name="error_can_not_handle_uri">Could not handle this URI in KeePassDX.</string>
+    <string name="error_can_not_handle_uri">Could not handle this URI in NetAigis KeySafe.</string>
     <string name="error_no_hardware_key">Select a hardware key.</string>
     <string name="error_out_of_memory">No memory to load your entire database.</string>
     <string name="error_XML_malformed">XML malformed.</string>
@@ -289,7 +286,7 @@
     <string name="progress_title">Working…</string>
     <string name="protection">Protection</string>
     <string name="read_only">Write-protected</string>
-    <string name="read_only_warning">Depending on your file manager, KeePassDX may not allowed to write in your storage.</string>
+    <string name="read_only_warning">Depending on your file manager, NetAigis KeySafe may not allowed to write in your storage.</string>
     <string name="contains_duplicate_uuid">The database contains duplicate UUIDs.</string>
     <string name="contains_duplicate_uuid_procedure">Solve problem by generating new UUIDs for duplicates to continue?</string>
     <string name="search_mode">Search mode</string>

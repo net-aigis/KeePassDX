@@ -91,7 +91,6 @@
     <string name="loading_database">กำลังเปิดฐานข้อมูล…</string>
     <string name="device_unlock_prompt_extract_credential_title">เปิดฐานข้อมูลด้วยการปลดล็อกด้วยอุปกรณ์</string>
     <string name="waiting_challenge_response">กำลังรอการตอบกลับจากกุญแจฮาร์ดแวร์…</string>
-    <string name="html_about_licence">แอป คียพาสดีเอ็กซ์ © %1$d คุนซีซอฟต์ เป็นแอป &lt;strong&gt;โอเพนซอร์ซ&lt;/strong&gt; และ &lt;strong&gt;ไม่มีโฆษณา&lt;/strong&gt;.  \nจัดให้ตามสภาพที่เป็นอยู่ ภายใต้เงื่อนไข&lt;strong&gt;จีพีเอลรุ่น3&lt;/strong&gt; ลิขสิทธิ์, ปราศจากการรับประกันใดๆ.</string>
     <string name="ssid">SSID</string>
     <string name="account">บัญชี</string>
     <string name="bank">ธนาคาร</string>
@@ -359,7 +358,7 @@
     <string name="password_size_title">ขนาดรหัสผ่านที่สร้าง</string>
     <string name="list_password_generator_options_title">อักขระรหัสผ่าน</string>
     <string name="temp_device_unlock_enable_title">การปลดล็อกด้วยอุปกรณ์ชั่วคราว</string>
-    <string name="keyboard_label">เมจิคีย์บอร์ด (KeePassDX)</string>
+    <string name="keyboard_label">เมจิคีย์บอร์ด (NetAigis KeySafe)</string>
     <string name="keyboard_setting_label">การตั้งค่า เมจิคีย์บอร์ด</string>
     <string name="keyboard_entry_category">รายการ</string>
     <string name="keyboard_notification_entry_title">ข้อมูลการแจ้งเตือน</string>
@@ -410,7 +409,6 @@
     <string name="education_donation_title">มีส่วนร่วม</string>
     <string name="warning_database_info_reloaded">การเปิดฐานข้อมูลซ้ำจะลบข้อมูลที่ถูกแก้ไขภายในเครื่อง</string>
     <string name="default_checkbox">ใช้เป็นฐานข้อมูลค่าเริ่มต้น</string>
-    <string name="html_about_privacy">&lt;strong&gt;ไม่มีการรวบรวมข้อมูลผู้ใช้งาน&lt;/strong&gt;, แอปพลิเคชั่นนี้ไม่ได้ติดต่อกับเซิร์ฟเวอร์ใดๆ ทำงานจำเพาะในอุปกรณ์เท่านั้น และเคารพความเป็นส่วนตัวของผู้ใช้งานอย่างเต็มที่</string>
     <string name="entry_created">ถูกสร้างแล้ว</string>
     <string name="date_of_issue">วันที่ออก</string>
     <string name="entry_notes">โน้ต</string>
@@ -484,7 +482,6 @@
     <string name="error_otp_period">ระยะเวลาต้องอยู่ระหว่าง %1$d และ %2$d วินาที</string>
     <string name="sort_title">หัวข้อ</string>
     <string name="warning_empty_keyfile">ไม่แนะนำให้เพิ่ม คีย์ไฟล์ ว่างเปล่า</string>
-    <string name="html_about_contribution">เพื่อที่จะ &lt;strong&gt;คงความเป็นอิสระ&lt;/strong&gt;, &lt;strong&gt;แก้ไขข้อผิดพลาด&lt;/strong&gt;, &lt;strong&gt;เพิ่มฟีเจอร์&lt;/strong&gt; และ &lt;strong&gt;ทำให้ยังพัฒนาอยู่เสมอ&lt;/strong&gt;, เรารอคุณมา&lt;strong&gt;ร่วมแก้ไข&lt;/strong&gt;อยู่</string>
     <string name="field_value">ค่าเขตข้อมูล</string>
     <string name="warning_database_info_changed">ข้อมูลที่อยู่ในไฟล์ฐานข้อมูลของคุณถูกแก้ไขจากภายนอกแอป</string>
     <string name="description_app_properties">คุณสมบัติของ คียพาสดีเอ็กซ์ เพื่อจัดการการตั้งค่าแอป</string>

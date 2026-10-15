@@ -362,7 +362,7 @@ class FileDatabaseSelectActivity : DatabaseModeActivity() {
         super.onResume()
 
         // Define special title
-        specialTitle?.isVisible = this.isContributingUser()
+        specialTitle?.isVisible = false
 
         // Show open and create button or special mode
         when (mSpecialMode) {

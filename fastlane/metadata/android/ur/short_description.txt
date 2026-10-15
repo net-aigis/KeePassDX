@@ -1,1 +1,1 @@
-Manage Passkey / Password in a local and open-source vault
+KDBX password manager with optional HTTPS coordination.

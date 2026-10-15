@@ -82,11 +82,8 @@ object AppUtil {
         }
     }
 
-    fun Context.isContributingUser(): Boolean {
-        return (Education.isEducationScreenReclickedPerformed(this)
-                || isExternalAppInstalled(this.getString(R.string.keepro_app_id), false)
-                )
-    }
+    // KeySafe has no upstream Pro/donation gating; bundled functions are available.
+    fun Context.isContributingUser(): Boolean = true
 
     @RequiresApi(Build.VERSION_CODES.P)
     fun getInstalledBrowsersWithSignatures(

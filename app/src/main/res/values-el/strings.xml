@@ -42,8 +42,6 @@
     <string name="decrypting_db">Αποκρυπτογράφηση περιεχομένου βάσης δεδομένων …</string>
     <string name="default_checkbox">Χρήση ως προεπιλεγμένης βάσης δεδομένων</string>
     <string name="digits">Ψηφία</string>
-    <string name="html_about_licence">Το KeePassDX © %1$d Kunzisoft είναι &lt;strong&gt;ανοιχτού κώδικα&lt;/strong&gt; και &lt;strong&gt;χωρίς διαφημίσεις&lt;/strong&gt;.
-\nΠαρέχεται ως έχει, με άδεια &lt;strong&gt;GPLv3&lt;/strong&gt;, χωρίς καμία εγγύηση.</string>
     <string name="select_database_file">Ανοίξτε την υπάρχον κρύπτη</string>
     <string name="entry_accessed">Πρόσβαση</string>
     <string name="entry_cancel">Άκυρο</string>
@@ -60,7 +58,7 @@
     <string name="entry_url">Διεύθυνση URL</string>
     <string name="entry_user_name">Όνομα χρήστη</string>
     <string name="error_arc4">Η ροή κρυπτογράφησης Arcfour δεν υποστηρίζεται.</string>
-    <string name="error_can_not_handle_uri">Το KeePassDX δε μπορεί να χειριστεί αυτή τη διεύθυνση URI.</string>
+    <string name="error_can_not_handle_uri">Το NetAigis KeySafe δε μπορεί να χειριστεί αυτή τη διεύθυνση URI.</string>
     <string name="error_file_not_create">Δεν ήταν δυνατή η δημιουργία αρχείου.</string>
     <string name="error_invalid_db">Δεν ήταν δυνατή η ανάγνωση της βάσης δεδομένων.</string>
     <string name="error_invalid_path">Βεβαιωθείτε ότι η διαδρομή είναι σωστή.</string>
@@ -111,7 +109,7 @@
     <string name="progress_create">Δημιουργία νέας βάσης δεδομένων…</string>
     <string name="progress_title">Επεξεργασία…</string>
     <string name="protection">Προστασία</string>
-    <string name="read_only_warning">Το KeePassDX χρειάζεται άδεια εγγραφής για να αλλάξει οτιδήποτε στη βάση δεδομένων σας.</string>
+    <string name="read_only_warning">Το NetAigis KeySafe χρειάζεται άδεια εγγραφής για να αλλάξει οτιδήποτε στη βάση δεδομένων σας.</string>
     <string name="content_description_remove_from_list">Αφαίρεση</string>
     <string name="root">Ριζικός Κατάλογος</string>
     <string name="rounds">Κύκλοι μετασχηματισμού Κρυπτογράφησης</string>
@@ -164,7 +162,7 @@
     <string name="encrypted_value_stored">Ο Κρυπτογραφημένος κωδικός έχει αποθηκευτεί</string>
     <string name="general">Γενικά</string>
     <string name="autofill">Αυτόματη συμπλήρωση</string>
-    <string name="autofill_sign_in_prompt">Συνδεθείτε με το KeePassDX</string>
+    <string name="autofill_sign_in_prompt">Συνδεθείτε με το NetAigis KeySafe</string>
     <string name="set_credential_provider_service_title">Ορίστε την προεπιλεγμένη υπηρεσία αυτόματης συμπλήρωσης</string>
     <string name="password_size_title">Παραγόμενο μέγεθος κωδικού πρόσβασης</string>
     <string name="password_size_summary">Ορίστε το προεπιλεγμένο μέγεθος των παραγόμενων κωδικών πρόσβασης</string>
@@ -266,7 +264,7 @@
     <string name="clipboard">Πρόχειρο</string>
     <string name="build_label">Κατασκευή %1$s</string>
     <string name="keyboard_name">Magikeybοard</string>
-    <string name="keyboard_label">Magikeybοard (KeePassDX)</string>
+    <string name="keyboard_label">Magikeybοard (NetAigis KeySafe)</string>
     <string name="keyboard_setting_label">Ρυθμίσεις Magikeyboard</string>
     <string name="keyboard_entry_category">Καταχώριση</string>
     <string name="keyboard_entry_timeout_title">Τέλος χρόνου</string>
@@ -415,7 +413,6 @@
     <string name="auto_focus_search_summary">Ζητήστε αναζήτηση κατά το άνοιγμα μιας βάσης δεδομένων</string>
     <string name="error_create_database">Δεν είναι δυνατή η δημιουργία αρχείου βάσης δεδομένων.</string>
     <string name="error_label_exists">Αυτή η ετικέτα υπάρχει ήδη.</string>
-    <string name="html_about_contribution">Προκειμένου να &lt;strong&gt;διατηρήσουμε την ελευθερία μας&lt;/strong&gt;, &lt;strong&gt;να διορθώσουμε σφάλματα&lt;/strong&gt;, &lt;strong&gt;να προσθέσουμε λειτουργίες&lt;/strong&gt; και &lt;strong&gt;να είμαστε πάντα ενεργοί&lt;/strong&gt;, βασιζόμαστε στη &lt;strong&gt;συνεισφορά &lt;/strong&gt;.</string>
     <string name="discard">Απόρριψη</string>
     <string name="discard_changes">Απόρριψη αλλαγών;</string>
     <string name="validate">Επικυρώστε</string>
@@ -529,7 +526,7 @@
     <string name="success_export_app_properties">Έγινε εξαγωγή ρυθμίσεων εφαρμογής</string>
     <string name="error_import_app_properties">Σφάλμα κατά την εισαγωγή ρυθμίσεων εφαρμογής.</string>
     <string name="success_import_app_properties">Έγινε εισαγωγή ρυθμίσεων εφαρμογής</string>
-    <string name="description_app_properties">Ιδιότητες KeePassDX για διαχείριση ρυθμίσεων εφαρμογής</string>
+    <string name="description_app_properties">Ιδιότητες NetAigis KeySafe για διαχείριση ρυθμίσεων εφαρμογής</string>
     <string name="export_app_properties_summary">Δημιουργήστε ένα αρχείο για εξαγωγή ρυθμίσεων εφαρμογής</string>
     <string name="export_app_properties_title">Εξαγωγή ρυθμίσεων εφαρμογής</string>
     <string name="import_app_properties_summary">Επιλέξτε ένα αρχείο για εισαγωγή ρυθμίσεων εφαρμογής</string>
@@ -650,7 +647,6 @@
     <string name="error_unable_merge_database_kdb">Δεν είναι δυνατή η συγχώνευση με μια βάση δεδομένων kdb.</string>
     <string name="error_empty_key">Το κλειδί δεν μπορεί να είναι κενό.</string>
     <string name="corrupted_file">Κατεστραμμένο αρχείο.</string>
-    <string name="html_about_privacy">&lt;strong&gt;Δεν ανακτώνται δεδομένα χρήστη&lt;/strong&gt;, αυτή η εφαρμογή δεν συνδέεται με κανένα διακομιστή, λειτουργεί μόνο τοπικά και σέβεται πλήρως το απόρρητο των χρηστών.</string>
     <string name="auto_type">Αυτόματη-Πληκτρολόγηση</string>
     <string name="merge_success">Η συγχώνευση ολοκληρώθηκε με επιτυχία</string>
     <string name="info">Πληροφορίες</string>

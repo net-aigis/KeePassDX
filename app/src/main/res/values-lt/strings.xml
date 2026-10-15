@@ -17,7 +17,7 @@
     You should have received a copy of the GNU General Public License
     along with KeePassDX.  If not, see <http://www.gnu.org/licenses/>.
 --><resources>
-    <string name="about_description">KeePassDX slaptažodžių tvarkyklės realizacija Android platformai</string>
+    <string name="about_description">NetAigis KeySafe slaptažodžių tvarkyklės realizacija Android platformai</string>
     <string name="clipboard_cleared">Iškarpinė išvalyta</string>
     <string name="invalid_credentials">Nepavyko perskaityti prisijungimo duomenų.</string>
     <string name="feedback">Atsiliepimai</string>
@@ -84,7 +84,7 @@
     <string name="app_timeout">Neveiklumas</string>
     <string name="clipboard_error_clear">Nepavyko išvalyti iškarpinės</string>
     <string name="list_size_summary">Teksto dydis grupės sąraše</string>
-    <string name="error_can_not_handle_uri">KeePassDX negali apdoroti šio URI.</string>
+    <string name="error_can_not_handle_uri">NetAigis KeySafe negali apdoroti šio URI.</string>
     <string name="entry_not_found">Įrašo duomenys nerasti.</string>
     <string name="keyfile_is_empty">Rakto failas yra tuščias.</string>
     <string name="entry_keyfile">Rakto failas</string>
@@ -186,7 +186,7 @@
     <string name="menu_form_filling_settings">Formų pildymas</string>
     <string name="menu_device_unlock_settings">Įrenginio atrakinimas</string>
     <string name="menu_security_settings">Saugumo nustatymai</string>
-    <string name="read_only_warning">Priklausomai nuo jūsų failų tvarkyklės, KeePassDX gali būti neleidžiama rašyti į jūsų saugyklą.</string>
+    <string name="read_only_warning">Priklausomai nuo jūsų failų tvarkyklės, NetAigis KeySafe gali būti neleidžiama rašyti į jūsų saugyklą.</string>
     <string name="remember_hardware_key_title">Prisiminti aparatinės įrangos raktus</string>
     <string name="remember_hardware_key_summary">Seka naudojamus aparatinės įrangos raktus</string>
     <string name="warning_database_link_revoked">Failų tvarkyklė panaikino prieigą prie failo</string>
@@ -216,8 +216,6 @@
     <string name="error_field_name_already_exists">Įrašo pavadinimas jau egzistuoja.</string>
     <string name="error_database_uri_null">Duomenų bazės URI nepavyko gauti.</string>
     <string name="key_derivation_function">Rakto išvedimo funkcija</string>
-    <string name="html_about_licence">KeePassDX © %1$d Kunzisoft yra &lt;strong&gt;atviro kodo&lt;/strong&gt; ir &lt;strong&gt;be reklamų&lt;/strong&gt;.
-\nJis teikiamas toks, koks yra, pagal &lt;strong&gt;GPLv3&lt;/strong&gt; licenciją, be jokių garantijų.</string>
     <string name="private_key">Privatus raktas</string>
     <string name="date_of_issue">Išdavimo data</string>
     <string name="email_address">El. pašto adresas</string>
@@ -234,7 +232,6 @@
     <string name="content_description_otp_information">Vienkartinio slaptažodžio info</string>
     <string name="error_file_to_big">Failas, kurį bandote įkelti, yra per didelis.</string>
     <string name="error_otp_type">Ši forma neatpažįsta esamo OTP tipo, jos patvirtinimas gali nebegeneruoti teisingo žetono.</string>
-    <string name="html_about_privacy">&lt;strong&gt;Jokie naudotojo duomenys nerenkami&lt;/strong&gt;, ši programa neprisijungia prie jokio serverio, veikia tik vietoje ir visiškai nepažeidžia naudotojų privatumo.</string>
     <string name="debit_credit_card">Debeto / Kreditinė kortelė</string>
     <string name="holder">Savininkas</string>
     <string name="email">El. paštas</string>
@@ -340,7 +337,7 @@
     <string name="remember_keyfile_locations_title">Prisiminti raktų failų vietas</string>
     <string name="sort_creation_time">Sukūrimas</string>
     <string name="export_app_properties_summary">Sukurkite failą programėlės nustatymų eksportui</string>
-    <string name="description_app_properties">KeePassDX savybės programėlės nustatymams valdyti</string>
+    <string name="description_app_properties">NetAigis KeySafe savybės programėlės nustatymams valdyti</string>
     <string name="error_export_app_properties">Įvyko klaida programėlės nustatymų eksporto metu.</string>
     <string name="memory_usage">Atminties naudojimas</string>
     <string name="recycle_bin_group_title">Šiukšliadėžės grupė</string>
@@ -396,7 +393,7 @@
     <string name="menu_appearance_settings_summary">Temos, spalvos, atributai</string>
     <string name="general">Bendri</string>
     <string name="autofill">Automatinis pildymas</string>
-    <string name="autofill_sign_in_prompt">Prisijungti naudojant \"KeePassDX\"</string>
+    <string name="autofill_sign_in_prompt">Prisijungti naudojant \"NetAigis KeySafe\"</string>
     <string name="password_size_summary">Nustato numatytąjį generuojamų slaptažodžių ilgį</string>
     <string name="password_size_title">Generuojamo slaptažodžio ilgis</string>
     <string name="list_password_generator_options_title">Slaptažodžio simboliai</string>
@@ -538,7 +535,7 @@
     <string name="magic_keyboard_explanation_summary">Aktyvuoti tinkintą klaviatūrą, užpildančią jūsų slaptažodžius ir visus tapatybės laukus</string>
     <string name="device_keyboard_setting_title">Įrenginio klaviatūros nustatymai</string>
     <string name="keyboard_name">Magikeyboard</string>
-    <string name="keyboard_label">Magikeyboard (KeePassDX)</string>
+    <string name="keyboard_label">Magikeyboard (NetAigis KeySafe)</string>
     <string name="keyboard_setting_label">Magikeyboard nustatymai</string>
     <string name="keyboard_entry_category">Įrašas</string>
     <string name="keyboard_notification_entry_title">Pranešimo informacija</string>
@@ -690,12 +687,12 @@
     <string name="hide_templates_title">Slėpti šablonus</string>
     <string name="hide_templates_summary">Šablonai nėra rodomi</string>
     <string name="passkey">Prieigos raktas</string>
-    <string name="credential_provider_service_name">KeePassDX kredencialų teikėjas</string>
+    <string name="credential_provider_service_name">NetAigis KeySafe kredencialų teikėjas</string>
     <string name="passkey_creation_description">Išsaugoti prieigos raktą naujame įraše</string>
     <string name="passkey_update_description">Atnaujinti prieigos raktą %1$s</string>
     <string name="passkey_selection_username">Prieigos raktas nerastas</string>
     <string name="passkey_selection_description">Pasirinkti esamą prieigos raktą</string>
-    <string name="credential_provider_database_username">KeePassDX duomenų bazė</string>
+    <string name="credential_provider_database_username">NetAigis KeySafe duomenų bazė</string>
     <string name="credential_provider_locked_database_description">Pasirinkti atrakinti</string>
     <string name="passkey_username">Prieigos rakto naudotojo vardas</string>
     <string name="passkey_private_key">Prieigos rakto privatus raktas</string>
@@ -705,7 +702,6 @@
     <string name="passkey_backup_eligibility">Prieigos rakto atsarginės kopijos tinkamumas</string>
     <string name="passkey_backup_state">Prieigos rakto atsarginės kopijos būsena</string>
     <string name="error_passkey_result">Nepavyko grąžinti prieigos rakto</string>
-    <string name="html_about_contribution">Kad &lt;strong&gt;išlaikytume savo laisvę&lt;/strong&gt;, &lt;strong&gt;ištaisytume klaidas&lt;/strong&gt;, &lt;strong&gt;pridėtume funkcijų&lt;/strong&gt; ir &lt;strong&gt;būtume visada aktyvūs&lt;/strong&gt;, mes pasikliaujame jūsų &lt;strong&gt;indėliu&lt;/strong&gt;.</string>
     <string name="education_read_only_summary">Pakeiskite atidarymo režimą sesijai.\n\n\"Rašymo apsauga\" apsaugo duomenų bazę nuo atsitiktinių pakeitimų.\n\"Modifikuojamas\" leidžia pridėti, ištrinti arba modifikuoti visus elementus kaip norite.</string>
     <string name="html_text_ad_free">Skirtingai nuo daugelio slaptažodžių valdymo programų, ši yra &lt;strong&gt;be reklamų&lt;/strong&gt;, &lt;strong&gt;copylefted libre programinė įranga&lt;/strong&gt; ir nerenka asmeninių duomenų savo serveriuose, nesvarbu kokią versiją naudojate.</string>
     <string name="html_text_buy_pro">Perkant pro versiją, turėsite prieigą prie šio &lt;strong&gt;vizualinio stiliaus&lt;/strong&gt; ir ypač padėsite &lt;strong&gt;bendruomenės projektų realizacijai.&lt;/strong&gt;</string>

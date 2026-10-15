@@ -39,8 +39,6 @@
     <string name="decrypting_db">Descriptografando conteúdo do banco de dados…</string>
     <string name="default_checkbox">Usar como banco de dados padrão</string>
     <string name="digits">Dígitos</string>
-    <string name="html_about_licence">KeePassDX © %1$d Kunzisoft é de &lt;strong&gt;código aberto&lt;/strong&gt; e &lt;strong&gt;sem propagandas&lt;/strong&gt;.
-\nÉ fornecido no estado em que se encontra, sob licença &lt;strong&gt;GPLv3&lt;/strong&gt;, sem qualquer garantia.</string>
     <string name="select_database_file">Abrir cofre existente</string>
     <string name="entry_accessed">Acessado</string>
     <string name="entry_cancel">Cancelar</string>
@@ -56,7 +54,7 @@
     <string name="entry_url">URL</string>
     <string name="entry_user_name">Nome de usuário</string>
     <string name="error_arc4">A cifra de fluxo Arcfour não é suportada.</string>
-    <string name="error_can_not_handle_uri">Não pôde tratar esta URI no KeePassDX.</string>
+    <string name="error_can_not_handle_uri">Não pôde tratar esta URI no NetAigis KeySafe.</string>
     <string name="error_file_not_create">Não foi possível criar o arquivo.</string>
     <string name="error_invalid_db">Falha ao ler o banco de dados.</string>
     <string name="error_invalid_path">Certifique-se de que o caminho está correto.</string>
@@ -147,7 +145,7 @@
     <string name="menu_open_file_read_and_write">Modificável</string>
     <string name="protection">Proteção</string>
     <string name="read_only">Somente leitura</string>
-    <string name="read_only_warning">KeePassDX precisa de permissões de escrita para poder mudar qualquer coisa no seu banco.</string>
+    <string name="read_only_warning">NetAigis KeySafe precisa de permissões de escrita para poder mudar qualquer coisa no seu banco.</string>
     <string name="show_recent_files_title">Exibir arquivos recentes</string>
     <string name="show_recent_files_summary">Exibir locais de bancos de dados recentes</string>
     <string name="encryption_explanation">Algoritmo de criptografia usado para todos os dados</string>
@@ -175,7 +173,7 @@
     <string name="menu_appearance_settings">Aparência</string>
     <string name="general">Geral</string>
     <string name="autofill">Preenchimento automático</string>
-    <string name="autofill_sign_in_prompt">Entre com o KeePassDX</string>
+    <string name="autofill_sign_in_prompt">Entre com o NetAigis KeySafe</string>
     <string name="set_credential_provider_service_title">Definir serviço padrão de preenchimento automático</string>
     <string name="autofill_explanation_summary">Configure o serviço para rapidamente preencher formulários em outros aplicativos</string>
     <string name="password_size_title">Comprimento da senha gerada</string>
@@ -278,7 +276,7 @@
     <string name="clipboard">Área de transferência</string>
     <string name="build_label">Compilação %1$s</string>
     <string name="keyboard_name">Magikeyboard</string>
-    <string name="keyboard_label">Magikeyboard (KeePassDX)</string>
+    <string name="keyboard_label">Magikeyboard (NetAigis KeySafe)</string>
     <string name="keyboard_setting_label">Configurações do Magikeyboard</string>
     <string name="keyboard_entry_category">Entrada</string>
     <string name="keyboard_entry_timeout_title">Tempo limite</string>
@@ -415,7 +413,6 @@
     <string name="error_create_database">Não foi possível criar o arquivo do banco de dados.</string>
     <string name="error_label_exists">Este rótulo já existe.</string>
     <string name="entry_attachments">Anexos</string>
-    <string name="html_about_contribution">Para &lt;strong&gt;manter nossa liberdade&lt;/strong&gt;, &lt;strong&gt;consertar erros&lt;/strong&gt;, &lt;strong&gt;adicionar recursos&lt;/strong&gt; e &lt;strong&gt;para estar sempre ativo&lt;/strong&gt;, contamos com sua &lt;strong&gt;contribuição&lt;/strong&gt;.</string>
     <string name="entry_add_attachment">Adicionar anexo</string>
     <string name="discard_changes">Descartar mudanças\?</string>
     <string name="validate">Validar</string>
@@ -515,7 +512,7 @@
     <string name="success_export_app_properties">As configurações do aplicativo foram exportadas</string>
     <string name="error_import_app_properties">Houve um erro durante a importação das configurações do aplicativo.</string>
     <string name="success_import_app_properties">As configurações do aplicativo foram importadas</string>
-    <string name="description_app_properties">Propriedades KeePassDX para gerenciar configurações de aplicativos</string>
+    <string name="description_app_properties">Propriedades NetAigis KeySafe para gerenciar configurações de aplicativos</string>
     <string name="export_app_properties_summary">Crie um arquivo para exportar as configurações do aplicativo</string>
     <string name="export_app_properties_title">Exportar as configurações do aplicativo</string>
     <string name="import_app_properties_summary">Selecione um arquivo para importar as configurações do aplicativo</string>
@@ -636,7 +633,6 @@
     <string name="error_unable_merge_database_kdb">Não é possível mesclar a partir de um arquivo de banco de dados kbd.</string>
     <string name="error_location_unknown">Localização do banco de dados desconhecida, a ação do banco de dados não pode ser executada.</string>
     <string name="error_empty_key">A chave não pode estar vazia.</string>
-    <string name="html_about_privacy">&lt;strong&gt;Nenhum dado do usuário é coletado&lt;/strong&gt;, este aplicativo não se conecta a nenhum servidor, funciona apenas localmente e respeita totalmente a privacidade dos usuários.</string>
     <string name="hardware_key">Chave física</string>
     <string name="error_no_hardware_key">Selecione uma chave física.</string>
     <string name="error_XML_malformed">XML malformado.</string>
@@ -712,7 +708,7 @@
     <string name="passkeys_backup_eligibility_summary">Determine no tempo de criação se é permitido que seja feito o backup da fonte da credencial de chaves públicas</string>
     <string name="passkeys_backup_state_title">Estado do Backup</string>
     <string name="passkey">Chave de acesso</string>
-    <string name="credential_provider_service_name">Provedor de Credenciais KeePassDX</string>
+    <string name="credential_provider_service_name">Provedor de Credenciais NetAigis KeySafe</string>
     <string name="passkeys">Chaves de acesso</string>
     <string name="passkeys_explanation_summary">Configure Chaves de Acesso para um login sem senha rápido e seguro</string>
     <string name="passkeys_preference_title">Configurações de chaves de acesso</string>
@@ -725,7 +721,7 @@
     <string name="passkey_update_description">Atualizar chave de acesso em %1$s</string>
     <string name="passkey_selection_username">Nenhuma chave de acesso encontrada</string>
     <string name="passkey_selection_description">Selecione uma chave de acesso existente</string>
-    <string name="credential_provider_database_username">Banco de dados KeePassDX</string>
+    <string name="credential_provider_database_username">Banco de dados NetAigis KeySafe</string>
     <string name="credential_provider_locked_database_description">Selecione para desbloquear</string>
     <string name="passkey_username">Nome da chave de acesso</string>
     <string name="passkey_private_key">Chavde de acesso privada</string>
@@ -765,7 +761,7 @@
     <string name="show_tags_title">Mostrar etiquetas</string>
     <string name="show_tags_summary">Exibe etiquetas na lista de entradas</string>
     <string name="benchmark_calculation">Calcular para %1$s s</string>
-    <string name="keyboard_share_browser">Compartilhar de %1$s para KeePassDX</string>
+    <string name="keyboard_share_browser">Compartilhar de %1$s para NetAigis KeySafe</string>
     <string name="benchmarking">Avaliando performance…</string>
     <string name="error_load_database_KDF_iteration">Iteração do KDF muito alta.</string>
     <string name="error_load_database_KDF_parallelism">Paralelismo do KDF muito alto.</string>
