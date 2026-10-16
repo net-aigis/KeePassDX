@@ -12,6 +12,37 @@ class ThreeWayEntryMergePlanTest {
             remote?.let { mapOf("uuid-1" to it) } ?: emptyMap()
         ).single().source
 
+    @Test fun `unresolved conflict is rejected before applying plan`() {
+        val plan = ThreeWayEntryMergePlan.plan(
+            mapOf("entry" to "a"), mapOf("entry" to "b"), mapOf("entry" to "c")
+        )
+        try {
+            ThreeWayEntryMergePlan.requireConflictFree(plan)
+            org.junit.Assert.fail("Conflict must block writes")
+        } catch (_: IllegalArgumentException) {
+            // Expected: no merge may proceed with unresolved conflicts.
+        }
+    }
+    @Test fun `conflict free plan passes preflight`() {
+        val plan = ThreeWayEntryMergePlan.plan(
+            mapOf("one" to "a", "two" to "b"),
+            mapOf("one" to "A", "two" to "b"),
+            mapOf("one" to "a", "two" to "B")
+        )
+        ThreeWayEntryMergePlan.requireConflictFree(plan)
+    }
+    @Test fun `duplicate record identities are rejected`() {
+        val duplicated = listOf(
+            ThreeWayEntryMergePlan.Decision("same", ThreeWayEntryMergePlan.Source.LOCAL),
+            ThreeWayEntryMergePlan.Decision("same", ThreeWayEntryMergePlan.Source.REMOTE)
+        )
+        try {
+            ThreeWayEntryMergePlan.requireConflictFree(duplicated)
+            org.junit.Assert.fail("Duplicate IDs must block writes")
+        } catch (_: IllegalArgumentException) {
+            // Expected.
+        }
+    }
     @Test fun `local change only is eligible`() {
         assertEquals(ThreeWayEntryMergePlan.Source.LOCAL, decision("a", "b", "a"))
     }

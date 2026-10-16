@@ -12,6 +12,16 @@ package com.kunzisoft.keepass.coordination
  */
 internal object ThreeWayEntryMergePlan {
     enum class Source { UNCHANGED, LOCAL, REMOTE, IDENTICAL, CONFLICT }
+
+    /** Reject unresolved decisions before any future adapter can apply a plan. */
+    fun requireConflictFree(decisions: List<Decision>) {
+        require(decisions.none { it.source == Source.CONFLICT }) {
+            "KDBX merge contains unresolved conflicts; no write is permitted"
+        }
+        require(decisions.map { it.entryId }.toSet().size == decisions.size) {
+            "KDBX merge plan contains duplicate record identities"
+        }
+    }
     data class Decision(val entryId: String, val source: Source)
 
     /** Missing UUID means a deletion. A remote-vs-local conflict includes
