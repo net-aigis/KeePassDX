@@ -1,11 +1,14 @@
 /* SPDX-License-Identifier: GPL-3.0-or-later */
 package com.kunzisoft.keepass.coordination
 
-import com.sun.net.httpserver.HttpExchange
-import com.sun.net.httpserver.HttpServer
+import java.io.BufferedInputStream
+import java.io.ByteArrayOutputStream
+import java.net.InetAddress
+import java.net.ServerSocket
+import java.net.Socket
+import java.net.SocketException
 import java.io.IOException
 import java.net.HttpURLConnection
-import java.net.InetSocketAddress
 import java.net.URI
 import java.nio.charset.StandardCharsets
 import java.util.UUID
@@ -188,39 +191,126 @@ internal object KdbxLiveProtocolScenarios {
         }
     }
 
+    /**
+     * Small test-only fault proxy implemented with standard Java sockets.
+     * Android's JVM test compile classpath does not expose jdk.httpserver,
+     * so com.sun.net.httpserver must NOT be referenced here.
+     *
+     * This deliberately accepts only bounded HTTP/1.1 Content-Length requests
+     * from the local integration test client; it is NOT a production HTTP proxy.
+     */
     private class FaultProxy(
         private val backend: String,
         private val interceptPut: (String, ByteArray) -> Mode
     ) : AutoCloseable {
         enum class Mode { NORMAL, REJECT_BEFORE_FORWARD, ACK_LOST }
-        private val server = HttpServer.create(InetSocketAddress("127.0.0.1", 0), 0)
-        private val executor = Executors.newCachedThreadPool()
-        val url: String get() = "http://127.0.0.1:${server.address.port}"
+
+        private val listener = ServerSocket(0, 16, InetAddress.getByName("127.0.0.1"))
+        private val executor = Executors.newCachedThreadPool { task ->
+            Thread(task, "keysafe-test-fault-proxy").apply { isDaemon = true }
+        }
+        val url: String get() = "http://127.0.0.1:${listener.localPort}"
 
         init {
-            server.executor = executor
-            server.createContext("/") { exchange ->
-                try { serve(exchange) } catch (e: Throwable) {
-                    runCatching { exchange.sendResponseHeaders(502, -1) }
-                } finally { exchange.close() }
+            executor.execute {
+                while (!listener.isClosed) {
+                    try {
+                        val socket = listener.accept()
+                        executor.execute {
+                            socket.use { connection ->
+                                try {
+                                    connection.soTimeout = 30_000
+                                    serve(connection)
+                                } catch (_: IOException) {
+                                    // Closing the socket signals network failure to the client.
+                                }
+                            }
+                        }
+                    } catch (_: SocketException) {
+                        break // listener closed by close()
+                    } catch (_: IOException) {
+                        if (listener.isClosed) break
+                    }
+                }
             }
-            server.start()
         }
-        private fun serve(exchange: HttpExchange) {
-            val body = exchange.requestBody.use { it.readBytes() }
-            val mode = if (exchange.requestMethod == "PUT") interceptPut(exchange.requestURI.path, body) else Mode.NORMAL
+
+        private fun line(input: BufferedInputStream): String {
+            val output = ByteArrayOutputStream()
+            while (true) {
+                val next = input.read()
+                if (next == -1) throw IOException("Unexpected end of test HTTP headers")
+                if (next == 10) break
+                if (next != 13) output.write(next)
+                if (output.size() > 8192) throw IOException("Test HTTP header too long")
+            }
+            return output.toString(StandardCharsets.US_ASCII.name())
+        }
+
+        private fun requestBody(input: BufferedInputStream, length: Int): ByteArray {
+            if (length !in 0..(1024 * 1024)) throw IOException("Oversized test HTTP request")
+            val result = ByteArray(length)
+            var received = 0
+            while (received < length) {
+                val n = input.read(result, received, length - received)
+                if (n < 0) throw IOException("Truncated test HTTP request")
+                received += n
+            }
+            return result
+        }
+
+        private fun respond(socket: Socket, code: Int, body: ByteArray, etag: String?) {
+            val headers = buildString {
+                append("HTTP/1.1 $code Test\r\n")
+                append("Content-Length: ${body.size}\r\n")
+                append("Connection: close\r\n")
+                if (etag != null) append("ETag: $etag\r\n")
+                append("\r\n")
+            }
+            socket.getOutputStream().apply {
+                write(headers.toByteArray(StandardCharsets.US_ASCII))
+                write(body)
+                flush()
+            }
+        }
+
+        private fun serve(socket: Socket) {
+            val input = BufferedInputStream(socket.getInputStream())
+            val request = line(input).split(' ')
+            if (request.size != 3 || request[2] != "HTTP/1.1") {
+                throw IOException("Unexpected test HTTP request")
+            }
+            val method = request[0]
+            val path = request[1]
+            if (!path.startsWith("/v1/databases/")) throw IOException("Unexpected test URL")
+            val headers = mutableMapOf<String, String>()
+            var headerCount = 0
+            while (true) {
+                val header = line(input)
+                if (header.isEmpty()) break
+                if (++headerCount > 64) throw IOException("Too many test HTTP headers")
+                val colon = header.indexOf(':')
+                if (colon <= 0) throw IOException("Malformed test HTTP header")
+                headers[header.substring(0, colon).lowercase()] = header.substring(colon + 1).trim()
+            }
+            val length = headers["content-length"]?.toIntOrNull() ?: 0
+            val body = requestBody(input, length)
+            val mode = if (method == "PUT") interceptPut(path, body) else Mode.NORMAL
             if (mode == Mode.REJECT_BEFORE_FORWARD) {
-                exchange.sendResponseHeaders(503, -1)
+                respond(socket, 503, byteArrayOf(), null)
                 return
             }
-            val connection = URI(backend + exchange.requestURI.toString()).toURL().openConnection() as HttpURLConnection
+
+            val connection = URI(backend + path).toURL().openConnection() as HttpURLConnection
             try {
                 connection.instanceFollowRedirects = false
-                connection.requestMethod = exchange.requestMethod
-                for (key in listOf("Authorization", "X-KDBX-Lease", "If-Match")) {
-                    exchange.requestHeaders.getFirst(key)?.let { connection.setRequestProperty(key, it) }
+                connection.connectTimeout = 10_000
+                connection.readTimeout = 30_000
+                connection.requestMethod = method
+                for (key in listOf("Authorization", "X-KDBX-Lease", "If-Match", "Content-Type")) {
+                    headers[key.lowercase()]?.let { connection.setRequestProperty(key, it) }
                 }
-                if (exchange.requestMethod in listOf("PUT", "POST")) {
+                if (method == "PUT" || method == "POST") {
                     connection.doOutput = true
                     connection.setFixedLengthStreamingMode(body.size)
                     connection.outputStream.use { it.write(body) }
@@ -230,24 +320,21 @@ internal object KdbxLiveProtocolScenarios {
                     ?.use { it.readBytes() } ?: byteArrayOf()
                 if (mode == Mode.ACK_LOST) {
                     check(status == 200) { "Backend did not commit before simulated lost acknowledgement" }
-                    // Terminate the HTTP connection without returning the 200 acknowledgement.
-                    exchange.close()
+                    // No HTTP response: the writer cannot know whether PUT committed.
                     return
                 }
-                connection.getHeaderField("ETag")?.let { exchange.responseHeaders.set("ETag", it) }
-                if (status == 204 || reply.isEmpty()) {
-                    exchange.sendResponseHeaders(status, -1)
-                } else {
-                    exchange.sendResponseHeaders(status, reply.size.toLong())
-                    exchange.responseBody.use { it.write(reply) }
-                }
-            } finally { connection.disconnect() }
+                respond(socket, status, reply, connection.getHeaderField("ETag"))
+            } finally {
+                connection.disconnect()
+            }
         }
+
         override fun close() {
-            server.stop(0)
+            listener.close()
             executor.shutdownNow()
         }
     }
+
 }
 
 /** Standalone Kotlin/JVM executable for offline development testing (same client sources). */
