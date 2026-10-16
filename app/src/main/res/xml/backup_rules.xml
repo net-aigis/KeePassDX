@@ -20,11 +20,15 @@
 <data-extraction-rules>
     <cloud-backup disableIfNoEncryptionCapabilities="true">
         <include domain="sharedpref" path="."/>
+        <!-- Coordinator tokens are AndroidKeyStore-bound and must not be restored without their key. -->
+        <exclude domain="sharedpref" path="coordinated_kdbx.xml"/>
         <include domain="database" path="."/>
         <exclude domain="database" path="com.kunzisoft.keepass.database"/>
     </cloud-backup>
     <device-transfer>
         <include domain="sharedpref" path="."/>
+        <!-- Coordinator tokens are AndroidKeyStore-bound and must not be restored without their key. -->
+        <exclude domain="sharedpref" path="coordinated_kdbx.xml"/>
         <include domain="database" path="."/>
         <exclude domain="database" path="com.kunzisoft.keepass.database"/>
     </device-transfer>

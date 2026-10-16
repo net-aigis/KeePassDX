@@ -84,17 +84,24 @@ internal object CoordinatorSession {
     @Synchronized
     fun persistAndPublish(context: Context, uri: Uri, encryptedKdbx: ByteArray) {
         if (!handles(uri)) throw IOException("Not a coordinator URI")
-        val config = CoordinatorConfiguration.get(context) ?: throw IOException("Coordinator not configured")
-        // Reconfiguration must never redirect a pending encrypted revision to
-        // another coordinator or database while an old lease is still active.
-        if (activeStorageIdentity != recoveryIdentity(config) || activeDocumentUri != uri.toString()) {
-            throw IOException("Coordinator settings changed during editing; close and reopen the database")
+        // Keep the original document binding. Mutable settings must not redirect
+        // recovery data to another coordinator while an editing session is open.
+        if (activeDocumentUri != uri.toString()) {
+            throw IOException("Coordinator document changed during editing")
         }
+        val identity = activeStorageIdentity
+            ?: throw IOException("No coordinator identity for this editing session")
         val client = active ?: throw IOException("No valid editable coordinator session; reload before saving")
-        if (!client.hasLease()) throw IOException("Coordinator lease lost; save refused")
-        AtomicRecoveryStore.retain(context.filesDir, recoveryIdentity(config), client.currentRevision(), encryptedKdbx)
+        // Durable ciphertext comes FIRST. Lease loss or settings changes can
+        // prevent a remote PUT, but must not lose a locally completed KDBX save.
+        AtomicRecoveryStore.retain(context.filesDir, identity, client.revisionForRecovery(), encryptedKdbx)
+        val config = CoordinatorConfiguration.get(context)
+        if (config == null || recoveryIdentity(config) != identity) {
+            throw IOException("Coordinator settings changed during editing; encrypted recovery copy retained")
+        }
+        if (!client.hasLease()) throw KdbxCoordinatorClient.LostLeaseException()
         val confirmedRevision = client.publish(encryptedKdbx)
-        AtomicRecoveryStore.acknowledge(context.filesDir, recoveryIdentity(config), confirmedRevision)
+        AtomicRecoveryStore.acknowledge(context.filesDir, identity, confirmedRevision)
         databaseHash = confirmedRevision
     }
 

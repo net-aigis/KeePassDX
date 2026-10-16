@@ -138,6 +138,12 @@ class KdbxCoordinatorClient(
         revision ?: throw IOException("No editing revision")
     }
 
+    /** The last acquired revision must remain available for crash recovery
+     * even after the lease is lost. This never authorizes a network write. */
+    internal fun revisionForRecovery(): String = synchronized(mutex) {
+        revision ?: throw IOException("No revision available for recovery")
+    }
+
     fun downloadReadOnly(): ByteArray? {
         val response = request("GET", "/file")
         if (response.status == 404) return null
