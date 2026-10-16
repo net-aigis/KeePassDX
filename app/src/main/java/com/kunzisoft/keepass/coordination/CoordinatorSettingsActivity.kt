@@ -21,7 +21,7 @@ import java.io.IOException
 
 /** Basic configuration for the opt-in native file provider; no separate launcher. */
 class CoordinatorSettingsActivity : AppCompatActivity() {
-    private enum class ExportKind { LOCAL_RECOVERY, CURRENT_SERVER }
+    private enum class ExportKind { BASE_ANCESTOR, LOCAL_RECOVERY, CURRENT_SERVER }
     private data class ExportRequest(val kind: ExportKind, val identity: String)
     private var pendingExport: ExportRequest? = null
 
@@ -42,6 +42,8 @@ class CoordinatorSettingsActivity : AppCompatActivity() {
                 if (CoordinatorConflictCopies.identity(config) != request.identity)
                     throw IOException("Coordinator identity changed")
                 val encrypted = when (request.kind) {
+                    ExportKind.BASE_ANCESTOR ->
+                        CoordinatorConflictCopies.readBase(appContext.filesDir, request.identity).bytes
                     ExportKind.LOCAL_RECOVERY ->
                         CoordinatorConflictCopies.readLocal(appContext.filesDir, request.identity).bytes
                     ExportKind.CURRENT_SERVER ->
@@ -71,7 +73,7 @@ class CoordinatorSettingsActivity : AppCompatActivity() {
             val config = CoordinatorConfiguration.get(this)
                 ?: throw IOException("Coordinator not configured")
             val identity = CoordinatorConflictCopies.identity(config)
-            if (kind == ExportKind.LOCAL_RECOVERY &&
+            if ((kind == ExportKind.LOCAL_RECOVERY || kind == ExportKind.BASE_ANCESTOR) &&
                 AtomicRecoveryStore.find(filesDir, identity) == null) {
                 Toast.makeText(this, "No unsynchronized local KDBX exists", Toast.LENGTH_LONG).show()
                 return
@@ -84,8 +86,11 @@ class CoordinatorSettingsActivity : AppCompatActivity() {
                 .setNegativeButton("Cancel", null)
                 .setPositiveButton("Choose location") { _, _ ->
                     pendingExport = ExportRequest(kind, identity)
-                    createEncryptedDocument.launch(if (kind == ExportKind.LOCAL_RECOVERY)
-                        "keysafe-local-unsynchronized.kdbx" else "keysafe-server-current.kdbx")
+                    createEncryptedDocument.launch(when (kind) {
+                        ExportKind.BASE_ANCESTOR -> "keysafe-original-base.kdbx"
+                        ExportKind.LOCAL_RECOVERY -> "keysafe-local-unsynchronized.kdbx"
+                        ExportKind.CURRENT_SERVER -> "keysafe-server-current.kdbx"
+                    })
                 }
                 .show()
         } catch (_: Exception) {
@@ -143,8 +148,13 @@ class CoordinatorSettingsActivity : AppCompatActivity() {
             }
         })
         form.addView(TextView(this).apply {
-            text = "Conflict recovery: export BOTH versions before attempting any manual merge. " +
-                "Neither export removes pending changes, and the server is never overwritten here."
+            text = "Conflict recovery: export ALL THREE versions (original base, local changes, " +
+                "current server) to separate private files before attempting any merge. " +
+                "None of these exports removes pending changes or overwrites the server."
+        })
+        form.addView(Button(this).apply {
+            text = "Export original base KDBX (common ancestor)"
+            setOnClickListener { beginExport(ExportKind.BASE_ANCESTOR) }
         })
         form.addView(Button(this).apply {
             text = "Export unsynchronized local KDBX"
