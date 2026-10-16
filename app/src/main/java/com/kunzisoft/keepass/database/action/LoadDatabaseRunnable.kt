@@ -75,7 +75,10 @@ class LoadDatabaseRunnable(
                     fixDuplicateUUID = mFixDuplicateUUID,
                     progressTaskUpdater = progressTaskUpdater
                 )
-                indicateUpToDateData()
+                // A cached offline copy is usable, but has NOT been synchronized.
+                if (coordinator != null && CoordinatorSession.isOfflineEditing())
+                    indicateNotSavedData()
+                else indicateUpToDateData()
             }
         } catch (e: Exception) {
             setError(e)

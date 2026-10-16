@@ -6,6 +6,7 @@ import android.os.Bundle
 import android.text.InputType
 import android.view.ViewGroup
 import android.widget.Button
+import android.widget.CheckBox
 import android.widget.EditText
 import android.widget.LinearLayout
 import android.widget.TextView
@@ -35,9 +36,16 @@ class CoordinatorSettingsActivity : AppCompatActivity() {
         val previous = runCatching { CoordinatorConfiguration.get(this) }.getOrNull()
         url.setText(previous?.url ?: "")
         id.setText(previous?.id ?: "")
+        val offline = CheckBox(this).apply {
+            text = "Allow encrypted offline cache for this shared KDBX"
+            isChecked = previous?.enableOfflineCache ?: false
+        }
+        form.addView(offline)
         val explanation = TextView(this).apply {
             text = "Select Coordinated KDBX in the Android file picker after saving. " +
-                "Only test databases: concurrent editing and crash recovery require validation."
+                "If offline cache is enabled, the app retains only encrypted KDBX bytes. " +
+                "Offline changes remain on this device until safely published after reconnecting. " +
+                "Conflicting changes require manual recovery. Only use test databases for now."
         }
         form.addView(explanation)
         form.addView(Button(this).apply {
@@ -46,7 +54,8 @@ class CoordinatorSettingsActivity : AppCompatActivity() {
                 try {
                     val secret = token.text.toString().ifBlank { previous?.token.orEmpty() }
                     CoordinatorConfiguration.put(this@CoordinatorSettingsActivity,
-                        CoordinatorConfiguration.Config(url.text.toString().trim(), id.text.toString().trim(), secret))
+                        CoordinatorConfiguration.Config(url.text.toString().trim(), id.text.toString().trim(), secret,
+                            offline.isChecked))
                     Toast.makeText(this@CoordinatorSettingsActivity, "Connection saved", Toast.LENGTH_SHORT).show()
                     finish()
                 } catch (e: Exception) {

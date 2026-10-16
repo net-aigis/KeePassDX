@@ -66,8 +66,17 @@ class CoordinatorDocumentsProvider : DocumentsProvider() {
         if (documentId != this.documentId || mode != "r") throw FileNotFoundException("Read-only document provider")
         val config = context?.let { CoordinatorConfiguration.get(it) } ?: throw FileNotFoundException("Not configured")
         // Download before exposing an FD, so errors are not confused with a valid empty KDBX.
-        val data = KdbxCoordinatorClient(config.url, config.id, config.token, "android-readonly")
-            .use { it.downloadReadOnly() } ?: throw FileNotFoundException("Remote database missing")
+        val data = try {
+            KdbxCoordinatorClient(config.url, config.id, config.token, "android-readonly")
+                .use { it.downloadReadOnly() }
+        } catch (e: Exception) {
+            // File-picker access is always read-only; offline access serves only
+            // locally verified ciphertext, never a synthesized or empty KDBX.
+            if (!config.enableOfflineCache || !OfflineSnapshotPolicy.isTransportUnavailable(e)) throw e
+            OfflineKdbxCache.readOffline(context!!.filesDir,
+                config.url.trimEnd('/') + "\u0000" + config.id)?.bytes
+                ?: throw FileNotFoundException("Coordinator unavailable; no verified offline cache")
+        } ?: throw FileNotFoundException("Remote database missing")
         val (read, write) = ParcelFileDescriptor.createPipe()
         thread(name = "coordinated-kdbx-read", isDaemon = true) {
             try { ParcelFileDescriptor.AutoCloseOutputStream(write).use { it.write(data) } }

@@ -3,6 +3,9 @@ package com.kunzisoft.keepass.coordination
 
 import android.content.Context
 import android.net.Uri
+import android.os.Handler
+import android.os.Looper
+import android.widget.Toast
 import com.kunzisoft.keepass.BuildConfig
 import java.io.ByteArrayInputStream
 import java.io.IOException
@@ -13,6 +16,7 @@ import java.security.MessageDigest
 internal object CoordinatorSession {
     data class OpenResult(val input: InputStream, val readOnly: Boolean)
     private var active: KdbxCoordinatorClient? = null
+    private var offlineBaseRevision: String? = null
     private var activeStorageIdentity: String? = null
     private var activeDocumentUri: String? = null
     private var databaseHash: String? = null
@@ -21,6 +25,27 @@ internal object CoordinatorSession {
     // merely because its database ID happens to be identical.
     private fun recoveryIdentity(config: CoordinatorConfiguration.Config): String =
         config.url.trimEnd('/') + "\u0000" + config.id
+
+    private fun notifyUser(context: Context, text: String) {
+        Handler(Looper.getMainLooper()).post {
+            Toast.makeText(context.applicationContext, text, Toast.LENGTH_LONG).show()
+        }
+    }
+
+    /** Can only fall back on actual transport failures, NEVER on HTTP or TLS errors. */
+    private fun openCached(context: Context, uri: Uri, identity: String, requestWrite: Boolean): OpenResult {
+        val cached = OfflineKdbxCache.readOffline(context.filesDir, identity)
+            ?: throw IOException("Coordinator unavailable and no previously verified KDBX cache exists")
+        activeStorageIdentity = if (requestWrite) identity else null
+        activeDocumentUri = if (requestWrite) uri.toString() else null
+        offlineBaseRevision = if (requestWrite) cached.baseRevision else null
+        databaseHash = sha256(cached.bytes)
+        notifyUser(context, "OFFLINE: Encrypted KDBX loaded from cache; changes will NOT synchronize until reconnect")
+        return OpenResult(ByteArrayInputStream(cached.bytes), !requestWrite)
+    }
+
+    @Synchronized
+    fun isOfflineEditing(): Boolean = offlineBaseRevision != null
 
     fun handles(uri: Uri?): Boolean = uri != null && uri.scheme == "content" &&
         uri.authority == "${BuildConfig.APPLICATION_ID}.coordinator"
@@ -73,9 +98,16 @@ internal object CoordinatorSession {
                 activeStorageIdentity = recoveryIdentity(config)
                 activeDocumentUri = uri.toString()
             } else client.close()
+            // Cache only after validating the response and completing any pending recovery.
+            // A future offline open verifies these ciphertext bytes against their hash.
+            if (config.enableOfflineCache)
+                OfflineKdbxCache.store(context.filesDir, recoveryIdentity(config), data)
             return OpenResult(ByteArrayInputStream(data), readOnly)
         } catch (e: Exception) {
             runCatching { client.close() }
+            if (config.enableOfflineCache && OfflineSnapshotPolicy.isTransportUnavailable(e)) {
+                return openCached(context, uri, recoveryIdentity(config), requestWrite)
+            }
             throw e
         }
     }
@@ -91,16 +123,26 @@ internal object CoordinatorSession {
         }
         val identity = activeStorageIdentity
             ?: throw IOException("No coordinator identity for this editing session")
-        val client = active ?: throw IOException("No valid editable coordinator session; reload before saving")
-        // Durable ciphertext comes FIRST. Lease loss or settings changes can
-        // prevent a remote PUT, but must not lose a locally completed KDBX save.
-        AtomicRecoveryStore.retain(context.filesDir, identity, client.revisionForRecovery(), encryptedKdbx)
+        val client = active
+        val localBase = offlineBaseRevision
+        val base = localBase ?: client?.revisionForRecovery()
+            ?: throw IOException("No valid coordinator editing session")
+        // Retain ciphertext FIRST. Offline mode is not a lease and never authorizes a PUT.
+        AtomicRecoveryStore.retain(context.filesDir, identity, base, encryptedKdbx)
+        if (localBase != null) {
+            notifyUser(context, "OFFLINE: Encrypted changes saved locally, NOT synchronized")
+            return
+        }
+        // Only a live server-issued lease can publish.
         val config = CoordinatorConfiguration.get(context)
         if (config == null || recoveryIdentity(config) != identity) {
             throw IOException("Coordinator settings changed during editing; encrypted recovery copy retained")
         }
-        if (!client.hasLease()) throw KdbxCoordinatorClient.LostLeaseException()
+        if (client == null || !client.hasLease()) throw KdbxCoordinatorClient.LostLeaseException()
         val confirmedRevision = client.publish(encryptedKdbx)
+        // A confirmed online save becomes the next verified offline base.
+        // Retain the recovery ciphertext until the cache update is durable.
+        if (config.enableOfflineCache) OfflineKdbxCache.store(context.filesDir, identity, encryptedKdbx)
         AtomicRecoveryStore.acknowledge(context.filesDir, identity, confirmedRevision)
         databaseHash = confirmedRevision
     }
@@ -109,6 +151,7 @@ internal object CoordinatorSession {
     fun close() {
         val client = active
         active = null
+        offlineBaseRevision = null
         activeStorageIdentity = null
         activeDocumentUri = null
         databaseHash = null

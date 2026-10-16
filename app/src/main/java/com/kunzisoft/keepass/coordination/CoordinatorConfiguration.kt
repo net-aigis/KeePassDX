@@ -13,7 +13,8 @@ import javax.crypto.spec.GCMParameterSpec
 
 /** An opt-in, app-private coordinator configuration. No password data or master keys are stored. */
 internal object CoordinatorConfiguration {
-    data class Config(val url: String, val id: String, val token: String)
+    data class Config(val url: String, val id: String, val token: String,
+                      val enableOfflineCache: Boolean = false)
     private const val PREFERENCES = "coordinated_kdbx"
     private const val KEY_ALIAS = "coordinated_kdbx_access_token"
 
@@ -40,6 +41,7 @@ internal object CoordinatorConfiguration {
         check(prefs.edit().putString("url", value.url).putString("id", value.id)
             .putString("iv", Base64.encodeToString(cipher.iv, Base64.NO_WRAP))
             .putString("encrypted_token", Base64.encodeToString(ciphertext, Base64.NO_WRAP))
+            .putBoolean("enable_offline_cache", value.enableOfflineCache)
             .commit()) { "Failed to persist configuration" }
     }
 
@@ -52,6 +54,7 @@ internal object CoordinatorConfiguration {
         val cipher = Cipher.getInstance("AES/GCM/NoPadding")
         cipher.init(Cipher.DECRYPT_MODE, key(),
             GCMParameterSpec(128, Base64.decode(iv, Base64.NO_WRAP)))
-        return Config(url, id, String(cipher.doFinal(Base64.decode(ciphertext, Base64.NO_WRAP)), Charsets.UTF_8))
+        return Config(url, id, String(cipher.doFinal(Base64.decode(ciphertext, Base64.NO_WRAP)), Charsets.UTF_8),
+            prefs.getBoolean("enable_offline_cache", false))
     }
 }

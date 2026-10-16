@@ -82,14 +82,15 @@ open class SaveDatabaseRunnable(
                     limits = context.getLimits()
                 )
                 if (coordinated) {
-                    // Publish only after a complete, fsync'ed and atomically
-                    // installed encrypted recovery revision is retained.
+                    // Offline saves remain locally durable but MUST NOT be marked
+                    // as synchronized with the server.
                     val encrypted = staging!!.toByteArray()
                     CoordinatorSession.persistAndPublish(context, destination!!, encrypted)
                 }
-                // Indicate data was saved only after remote publication succeeded.
                 if (databaseCopyUri == null) {
-                    database.indicateUpToDateData()
+                    if (coordinated && CoordinatorSession.isOfflineEditing())
+                        database.indicateNotSavedData()
+                    else database.indicateUpToDateData()
                 }
             } catch (e: Exception) {
                 database.indicateNotSavedData()
