@@ -98,7 +98,7 @@
     <string name="error_invalid_path">Proverite da li je putanja ispravna.</string>
     <string name="error_invalid_db">Nije moguće pročitati bazu podataka.</string>
     <string name="error_file_not_create">Nije moguće kreirati datoteku.</string>
-    <string name="error_can_not_handle_uri">Nije moguće obraditi ovaj URI u keePassDX-u.</string>
+    <string name="error_can_not_handle_uri">Nije moguće obraditi ovaj URI u NetAigis KeySafe.</string>
     <string name="error_arc4">Archfour šifrovanje nije podržano.</string>
     <string name="entry_user_name">Korisničko ime</string>
     <string name="entry_url">URL</string>

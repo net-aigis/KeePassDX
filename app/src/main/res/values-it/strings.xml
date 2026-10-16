@@ -112,7 +112,7 @@
     <string name="progress_title">In corso…</string>
     <string name="protection">Protezione</string>
     <string name="read_only">Sola lettura</string>
-    <string name="read_only_warning">A seconda del tuo file manager, KeepassDX potrebbe non riuscire a scrivere sulla memoria.</string>
+    <string name="read_only_warning">A seconda del tuo file manager, NetAigis KeySafe potrebbe non riuscire a scrivere sulla memoria.</string>
     <string name="content_description_remove_from_list">Elimina</string>
     <string name="root">Root</string>
     <string name="rounds">Livello cifratura</string>

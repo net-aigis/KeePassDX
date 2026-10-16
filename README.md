@@ -23,7 +23,7 @@ large-scale refactor with tests.
 
 ## Source, testing, distribution
 
-Planned repository name after GitHub rename: https://github.com/net-aigis/NetAigis-KeySafe
+Project repository: https://github.com/net-aigis/NetAigis-KeySafe
 
 CI: `.github/workflows/coordinated-kdbx-build.yml`; run Android unit tests and
 build the Libre APK in GitHub Actions. Debug APKs have a debug signing certificate
@@ -43,7 +43,7 @@ https://github.com/Kunzisoft/KeePassDX
 
 Original copyright notices and the GPL-3.0-or-later license apply. Changes in this
 fork are distributed under the compatible GPL license. See `LICENSE`, `LICENSES`,
-`CONTRIBUTING.md` (upstream history), and `docs/KEYSAFE_FORK_NOTICES.md`.
+`CONTRIBUTING.md` (NetAigis contribution rules), `docs/UPSTREAM_CONTRIBUTING.md` (upstream historical rules), and `docs/KEYSAFE_FORK_NOTICES.md`.
 
 The repository is a fork; it is not affiliated with or endorsed by the upstream
 KeePassDX maintainers.

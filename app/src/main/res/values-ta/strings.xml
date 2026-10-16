@@ -52,7 +52,7 @@
     <string name="menu_move">நகர்த்தவும்</string>
     <string name="contains_duplicate_uuid">தரவுத்தளத்தில் நகல் UUIDS உள்ளது.</string>
     <string name="remember_database_locations_title">தரவுத்தள இடங்களை நினைவில் கொள்ளுங்கள்</string>
-    <string name="read_only_warning">உங்கள் கோப்பு மேலாளரைப் பொறுத்து, உங்கள் சேமிப்பகத்தில் எழுத Keepassdx அனுமதிக்காது.</string>
+    <string name="read_only_warning">உங்கள் கோப்பு மேலாளரைப் பொறுத்து, உங்கள் சேமிப்பகத்தில் எழுத NetAigis KeySafe அனுமதிக்காது.</string>
     <string name="remember_database_locations_summary">தரவுத்தளங்கள் எங்கு சேமிக்கப்படுகின்றன என்பதைக் கண்காணிக்கும்</string>
     <string name="remember_keyfile_locations_title">கீஃபைல் இருப்பிடங்களை நினைவில் கொள்ளுங்கள்</string>
     <string name="hide_broken_locations_title">உடைந்த தரவுத்தள இணைப்புகளை மறைக்கவும்</string>
@@ -315,7 +315,7 @@
     <string name="show_recent_files_summary">அண்மைக் கால தரவுத்தளங்களின் இருப்பிடங்களைக் காட்டு</string>
     <string name="hide_broken_locations_summary">அண்மைக் கால தரவுத்தளங்களின் பட்டியலில் உடைந்த இணைப்புகளை மறைக்கவும்</string>
     <string name="export_app_properties_summary">பயன்பாட்டு அமைப்புகளை ஏற்றுமதி செய்ய ஒரு கோப்பை உருவாக்கவும்</string>
-    <string name="description_app_properties">பயன்பாட்டு அமைப்புகளை நிர்வகிக்க KeepASSDX பண்புகள்</string>
+    <string name="description_app_properties">பயன்பாட்டு அமைப்புகளை நிர்வகிக்க NetAigis KeySafe பண்புகள்</string>
     <string name="success_import_app_properties">பயன்பாட்டு அமைப்புகள் இறக்குமதி செய்யப்பட்டன</string>
     <string name="error_export_app_properties">பயன்பாட்டு அமைப்புகள் ஏற்றுமதியின்போது பிழை.</string>
     <string name="encryption_explanation">எல்லா தரவிற்கும் பயன்படுத்தப்படும் தரவுத்தள குறியாக்க வழிமுறை</string>

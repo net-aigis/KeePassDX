@@ -224,7 +224,7 @@ abstract class NotificationServiceParam<T> : Service() {
 
     companion object {
         private const val CHANNEL_ID = "com.kunzisoft.keepass.notification.channel"
-        private const val CHANNEL_NAME = "KeePassDX notification"
+        private const val CHANNEL_NAME = "NetAigis KeySafe notifications"
 
         fun checkNotificationsPermission(
             context: Context,
