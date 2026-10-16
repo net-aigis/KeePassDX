@@ -84,7 +84,15 @@ internal object AtomicRecoveryStore {
         if (encryptedDatabase.size > CoordinatorByteLimits.MAX_KDBX_BYTES) {
             throw IOException("Pending KDBX exceeds permitted size")
         }
-        if (find(directory, databaseId) != null) throw IOException("Unsynchronized recovery copy already exists")
+        // A failed publish may leave a pending encrypted revision while the user
+        // continues editing. Keep the LATEST complete save, never just the first.
+        // If a previous PUT was acknowledged but cleanup failed, the previous
+        // ciphertext hash is the new confirmed base revision.
+        val previous = find(directory, databaseId)
+        if (previous != null && !RecoveryRetentionPolicy.canReplace(
+                previous.baseRevision, pendingHash(previous.file), baseRevision)) {
+            throw IOException("Existing recovery revision has an unrelated base; manual recovery required")
+        }
         val destination = File(directory, "${prefix(databaseId)}${baseRevision}-pending.kdbx")
         val staged = File.createTempFile("${prefix(databaseId)}${baseRevision}-", ".stage", directory)
         try {
@@ -92,10 +100,24 @@ internal object AtomicRecoveryStore {
                 output.write(encryptedDatabase)
                 output.fd.sync()
             }
-            if (destination.exists() || !staged.renameTo(destination)) {
-                throw IOException("Could not atomically retain KDBX recovery copy")
+            // Android's POSIX rename atomically replaces a previous recovery
+            // snapshot with the same base revision. A crash cannot leave the
+            // old completed save partially overwritten.
+            try {
+                Os.rename(staged.absolutePath, destination.absolutePath)
+            } catch (e: Exception) {
+                throw IOException("Could not atomically retain KDBX recovery copy", e)
             }
             syncDirectory(directory)
+            if (previous != null && previous.file.absolutePath != destination.absolutePath) {
+                // When the base advanced, keep BOTH snapshots until the new one
+                // is durable. Interrupted cleanup leaves multiple files, which
+                // find() deliberately refuses to reconcile automatically.
+                if (!previous.file.delete()) {
+                    throw IOException("New recovery copy is durable, but old revision could not be removed")
+                }
+                syncDirectory(directory)
+            }
             return destination
         } finally {
             staged.delete()
