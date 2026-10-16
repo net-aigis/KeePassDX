@@ -75,6 +75,10 @@ internal object CoordinatorSession {
                 val remoteRevision = data?.let(::sha256) ?: "0"
                 when (AtomicRecoveryStore.decide(pending, remoteRevision)) {
                     AtomicRecoveryStore.RecoveryAction.ALREADY_PUBLISHED -> {
+                        // Commit the verified remote snapshot before removing recovery data.
+                        // Otherwise a crash could leave only an outdated offline cache.
+                        if (config.enableOfflineCache && data != null)
+                            OfflineKdbxCache.store(context.filesDir, recoveryIdentity(config), data)
                         AtomicRecoveryStore.acknowledge(context.filesDir, recoveryIdentity(config), remoteRevision)
                     }
                     AtomicRecoveryStore.RecoveryAction.PUBLISH -> {
@@ -82,6 +86,10 @@ internal object CoordinatorSession {
                             pending.file.inputStream(), CoordinatorByteLimits.MAX_KDBX_BYTES,
                             pending.file.length())
                         val confirmedRevision = client.publish(saved)
+                        // Once the server accepts the revision, persist the offline
+                        // snapshot BEFORE acknowledging and deleting recovery bytes.
+                        if (config.enableOfflineCache)
+                            OfflineKdbxCache.store(context.filesDir, recoveryIdentity(config), saved)
                         AtomicRecoveryStore.acknowledge(context.filesDir, recoveryIdentity(config), confirmedRevision)
                         data = saved
                     }

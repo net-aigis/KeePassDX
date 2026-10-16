@@ -19,3 +19,11 @@ This opt-in *database type* uses server coordination while reachable. Ordinary l
 - The existing 64 MiB in-memory KDBX limit remains; streaming is future work.
 - This initial implementation does **not** reconnect automatically in the background, merge conflicting offline changes, or guarantee availability after the app is uninstalled or its data is cleared.
 - Full Android-device tests, process-kill/power-loss durability tests and HTTPS end-to-end tests remain mandatory before production use.
+
+## Conflict recovery export (phase 2A)
+
+If the server revision differs from an offline edit's base revision, automatic publication stays blocked. In **Coordinator Settings**, choose **Export unsynchronized local KDBX** to save the pending encrypted edits and **Export current server KDBX** to save the server's latest encrypted version to two DIFFERENT, private destinations. The latter always downloads from the server; it cannot silently export a cached file. Neither export clears the app-private pending KDBX, unlocks the server, or merges entries.
+
+Open and compare both exported KDBX files with appropriate credentials, retaining both originals. KeePassDX's existing database merge uses modification timestamps and is **not** guaranteed to detect conflicting changes to the same entry. Do not assume it is a lossless three-way merge. KeySafe intentionally provides no 'force publish' or 'discard pending' shortcut in this phase. The final merge-and-publish workflow requires a separate, reviewed change that verifies the current server revision under an exclusive lease.
+
+Exports are user-selected files and may be backed up or synchronized by the chosen document provider; store them securely. Do not uninstall the app, clear app data, or overwrite either export while recovery is incomplete.
