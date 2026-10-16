@@ -71,3 +71,26 @@ cannot be passed to `ThreeWayKdbxTreePlan.plan` as a complete snapshot. A future
 adapter must canonicalize those values, verify binary bytes, and implement a
 reviewed atomic writer and lease-protected revision check before any merge or
 publish path can be enabled.
+
+## Session-scoped KDBX content fingerprints (phase 2E; still read-only)
+
+`KdbxRecordContentFingerprints.read(DatabaseKDBX, sessionKey)` verifies the
+existing model inventory and creates session-keyed HMAC-SHA256 comparisons for
+individual groups, entries, history versions and `DeletedObjects`. It reads
+protected `CharArray` values directly (without constructing plaintext strings)
+and streams the **actual uncompressed attachment bytes**, not database-specific
+binary-pool IDs. Variable-length fields are framed and custom maps are sorted.
+A missing or corrupted binary, duplicate/nested history object, or an
+uncompressed attachment exceeding the current 64 MiB in-memory limit fails closed.
+
+The caller MUST generate a fresh random key of at least 32 bytes for each
+base/local/remote comparison and use that same key for all three copies.
+These MACs and the key are sensitive **in-memory-only** comparison material;
+never store, log, export or send them to the coordinator. The caller must also
+prevent concurrent mutation of the decrypted model during inventory creation.
+
+**Not a merge authorization:** database-wide settings, custom-icon image
+bytes, cross-copy deleted-object reconciliation, binary-pool reconstruction,
+and the atomic writer/remote lease recheck are NOT implemented. These HMACs
+are intentionally not passed to `ThreeWayKdbxTreePlan` and do not enable
+merging, saving or publishing. Existing encrypted recovery is unchanged.
