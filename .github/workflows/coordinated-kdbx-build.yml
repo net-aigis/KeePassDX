@@ -73,11 +73,18 @@ jobs:
             exit 1
           fi
           ./gradlew --no-daemon --stacktrace \
-            :app:testLibreDebugUnitTest :app:assembleLibreDebug
+            :database:testDebugUnitTest :app:testLibreDebugUnitTest :app:assembleLibreDebug
           # Do not allow integration tests to be silently skipped by a misconfigured job.
           python3 - <<'PYTEST'
           from pathlib import Path
           import xml.etree.ElementTree as ET
+          db_reports = list(Path('database/build/test-results/testDebugUnitTest').glob('*DeletedGroupAncestorTest.xml'))
+          if len(db_reports) != 1:
+              raise SystemExit(f'Expected one KDBX ancestor regression report, got {len(db_reports)}')
+          db_suite = ET.parse(db_reports[0]).getroot()
+          if int(db_suite.get('tests', '0')) != 4 or int(db_suite.get('skipped', '0')) != 0:
+              raise SystemExit('KDBX ancestor regression tests missing or skipped')
+          print('KDBX ancestor regression tests executed without skips')
           report_dir = Path('app/build/test-results/testLibreDebugUnitTest')
           reports = list(report_dir.glob('*KdbxLiveProtocolIntegrationTest.xml'))
           if len(reports) != 1:

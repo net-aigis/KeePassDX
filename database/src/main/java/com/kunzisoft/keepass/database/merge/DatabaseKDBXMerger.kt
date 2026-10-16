@@ -337,20 +337,6 @@ class DatabaseKDBXMerger(private var database: DatabaseKDBX) {
     }
 
     /**
-     * Get the first parent not deleted
-     */
-    private fun firstNotDeletedParent(
-        node: NodeVersioned<UUID, GroupKDBX, EntryKDBX>,
-        deletedObjects: Set<DeletedObject>
-    ): GroupKDBX? {
-        var parent = node.parent
-        while (parent != null && deletedObjects.containsNode(parent)) {
-            parent = node.parent
-        }
-        return parent
-    }
-
-    /**
      * Delete a group from the database with the [deletedGroup] id
      * Recursively check whether a group to be deleted contains a node not to be deleted with [deletedObjects]
      * and move it to the first parent that has not been deleted.
@@ -359,6 +345,12 @@ class DatabaseKDBXMerger(private var database: DatabaseKDBX) {
         val databaseGroup = database.getGroupById(deletedGroup.uuid)
         if (databaseGroup != null
             && deletedGroup.deletionTime.isAfter(databaseGroup.lastModificationTime)) {
+            // Resolve a surviving destination BEFORE detaching any children.
+            // Never reparent into a deleted group or partially change the tree
+            // if the ancestry is corrupted or the root is marked deleted.
+            val destinationParent = DeletedGroupAncestor.firstSurviving(
+                databaseGroup.parent, deletedObjects.mapTo(HashSet<UUID>()) { it.uuid }
+            )
             // Must be in dedicated list to prevent modification collision
             val entriesToMove = mutableListOf<EntryKDBX>()
             databaseGroup.getChildEntries().forEach { child ->
@@ -379,14 +371,14 @@ class DatabaseKDBXMerger(private var database: DatabaseKDBX) {
                 database.removeEntryFrom(child, child.parent)
                 database.addEntryTo(
                     child,
-                    firstNotDeletedParent(databaseGroup, deletedObjects)
+                    destinationParent
                 )
             }
             groupsToMove.forEach { child ->
                 database.removeGroupFrom(child, child.parent)
                 database.addGroupTo(
                     child,
-                    firstNotDeletedParent(databaseGroup, deletedObjects)
+                    destinationParent
                 )
             }
             // Then delete the group
