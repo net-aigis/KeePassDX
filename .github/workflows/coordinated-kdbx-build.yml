@@ -29,11 +29,64 @@ jobs:
           grep -Fq 'applicationId = "de.netaigis.keysafe"' app/build.gradle.kts
           grep -Fq 'NetAigis KeySafe' app/src/main/res/values/donottranslate.xml
           grep -Fq 'android:authorities="${applicationId}.coordinator"' app/src/main/AndroidManifest.xml
-      - name: Run Android unit tests and compile app
+      - uses: actions/setup-go@v6
+        with:
+          go-version: '1.23.2'
+          cache: false
+      - name: Check Go coordinator races and edge cases
+        working-directory: tests/integration/coordinator
+        run: go test -race -count=10 ./...
+      - name: Run Android unit tests, real client-server integration, and build APK
+        shell: bash
         run: |
           chmod +x ./gradlew
+          test_dir="$(mktemp -d)"
+          coordinator_pid=""
+          cleanup() {
+            if [ -n "$coordinator_pid" ]; then
+              kill "$coordinator_pid" 2>/dev/null || true
+              wait "$coordinator_pid" 2>/dev/null || true
+            fi
+            rm -rf -- "$test_dir"
+          }
+          trap cleanup EXIT
+          (
+            cd tests/integration/coordinator
+            go build -o "$test_dir/coordinator" ./cmd/kdbx-coordinator
+          )
+          export KDBX_COORDINATOR_DIR="$test_dir/storage"
+          export KDBX_COORDINATOR_TOKEN='integration-test-only-secret-0123456789abcdef'
+          export KEYSAFE_INTEGRATION_URL='http://127.0.0.1:8765'
+          "$test_dir/coordinator" > "$test_dir/coordinator.log" 2>&1 &
+          coordinator_pid=$!
+          status=''
+          for attempt in $(seq 1 50); do
+            status="$(curl --silent --max-time 1 --output /dev/null --write-out '%{http_code}' \
+              -H "Authorization: Bearer $KDBX_COORDINATOR_TOKEN" \
+              "$KEYSAFE_INTEGRATION_URL/v1/databases/ready/file" || true)"
+            if [ "$status" = '404' ]; then break; fi
+            sleep 0.2
+          done
+          if [ "$status" != '404' ]; then
+            cat "$test_dir/coordinator.log"
+            echo 'Go integration coordinator failed to start' >&2
+            exit 1
+          fi
           ./gradlew --no-daemon --stacktrace \
             :app:testLibreDebugUnitTest :app:assembleLibreDebug
+          # Do not allow integration tests to be silently skipped by a misconfigured job.
+          python3 - <<'PYTEST'
+          from pathlib import Path
+          import xml.etree.ElementTree as ET
+          report_dir = Path('app/build/test-results/testLibreDebugUnitTest')
+          reports = list(report_dir.glob('*KdbxLiveProtocolIntegrationTest.xml'))
+          if len(reports) != 1:
+              raise SystemExit(f'Expected one live integration test report, got {len(reports)}')
+          suite = ET.parse(reports[0]).getroot()
+          if int(suite.get('tests', '0')) < 1 or int(suite.get('skipped', '0')) != 0:
+              raise SystemExit('Live integration test was not executed or was skipped')
+          print('Live Kotlin/Go integration test executed without skips')
+          PYTEST
       - name: Preserve built APK for testing
         if: success()
         uses: actions/upload-artifact@v4
