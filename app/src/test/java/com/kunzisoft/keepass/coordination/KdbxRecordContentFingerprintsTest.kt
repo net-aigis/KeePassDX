@@ -1,8 +1,10 @@
 /* SPDX-License-Identifier: GPL-3.0-or-later */
 package com.kunzisoft.keepass.coordination
 
+import com.kunzisoft.keepass.database.element.DateInstant
 import com.kunzisoft.keepass.database.element.CustomDataItem
 import com.kunzisoft.keepass.database.element.DeletedObject
+import com.kunzisoft.keepass.database.element.binary.BinaryCache
 import com.kunzisoft.keepass.database.element.binary.BinaryData
 import com.kunzisoft.keepass.database.element.database.DatabaseKDBX
 import com.kunzisoft.keepass.database.element.entry.EntryKDBX
@@ -15,9 +17,34 @@ import org.junit.Assert.fail
 import org.junit.Test
 import java.util.UUID
 import java.io.InputStream
+import java.io.OutputStream
+import java.io.ByteArrayInputStream
 
 class KdbxRecordContentFingerprintsTest {
     private val key = ByteArray(32) { (it + 1).toByte() }
+
+    // BinaryData is abstract; the test binary must implement its actual stream API.
+    private fun binary(
+        bytes: ByteArray = byteArrayOf(),
+        corrupted: Boolean = false,
+        stream: (() -> InputStream)? = null
+    ): BinaryData = object : BinaryData() {
+        init { isCorrupted = corrupted }
+
+        override fun getInputDataStream(binaryCache: BinaryCache): InputStream =
+            stream?.invoke() ?: ByteArrayInputStream(bytes)
+
+        override fun getOutputDataStream(binaryCache: BinaryCache): OutputStream =
+            throw UnsupportedOperationException("Read-only test binary")
+
+        override fun compress(binaryCache: BinaryCache) =
+            throw UnsupportedOperationException("Read-only test binary")
+
+        override fun decompress(binaryCache: BinaryCache) =
+            throw UnsupportedOperationException("Read-only test binary")
+
+        override fun clear(binaryCache: BinaryCache) = Unit
+    }
 
     private fun sample(): Triple<DatabaseKDBX, GroupKDBX, EntryKDBX> {
         val database = DatabaseKDBX()
@@ -55,17 +82,18 @@ class KdbxRecordContentFingerprintsTest {
     @Test fun `protect flag is semantically included`() {
         val (db, _, entry) = sample()
         val old = fingerprint(db, entry)
-        entry.fields["Password"] = ProtectedString(false, "first-secret".toCharArray())
+        entry.putField("Password", ProtectedString(true, "first-secret".toCharArray()))
         assertNotEquals(old, fingerprint(db, entry))
     }
 
     @Test fun `field insertion order does not alter result`() {
         val (db, _, entry) = sample()
-        entry.fields["B"] = ProtectedString(false, charArrayOf('2'))
-        entry.fields["A"] = ProtectedString(false, charArrayOf('1'))
+        entry.putField("B", ProtectedString(false, charArrayOf('2')))
+        entry.putField("A", ProtectedString(false, charArrayOf('1')))
         val first = fingerprint(db, entry)
-        val one = entry.fields.remove("A")!!
-        entry.fields["A"] = one
+        val one = requireNotNull(entry.getFieldValue("A"))
+        entry.removeField("A")
+        entry.putField("A", one)
         assertEquals(first, fingerprint(db, entry))
     }
 
@@ -97,13 +125,13 @@ class KdbxRecordContentFingerprintsTest {
 
     @Test fun `attachment bytes matter and binary pool ID does not`() {
         val (db, _, entry) = sample()
-        db.attachmentPool[7] = BinaryData("payload1".toByteArray())
+        db.attachmentPool.put(7, binary("payload1".toByteArray()))
         entry.binaries["doc"] = 7
         val first = fingerprint(db, entry)
-        db.attachmentPool[8] = BinaryData("payload1".toByteArray())
+        db.attachmentPool.put(8, binary("payload1".toByteArray()))
         entry.binaries["doc"] = 8
         assertEquals(first, fingerprint(db, entry))
-        db.attachmentPool[8] = BinaryData("payload2".toByteArray())
+        db.attachmentPool.put(8, binary("payload2".toByteArray()))
         assertNotEquals(first, fingerprint(db, entry))
     }
 
@@ -116,7 +144,7 @@ class KdbxRecordContentFingerprintsTest {
     @Test fun `corrupted binary fails closed`() {
         val (db, _, entry) = sample()
         entry.binaries["broken"] = 7
-        db.attachmentPool[7] = BinaryData(byteArrayOf(1), isCorrupted=true)
+        db.attachmentPool.put(7, binary(byteArrayOf(1), corrupted = true))
         rejected { fingerprint(db, entry) }
     }
 
@@ -137,8 +165,7 @@ class KdbxRecordContentFingerprintsTest {
     @Test fun `overlarge uncompressed attachment fails closed without buffering contents`() {
         val (db, _, entry) = sample()
         entry.binaries["huge"] = 7
-        db.attachmentPool[7] = object : BinaryData(byteArrayOf()) {
-            override fun getUnGzipInputDataStream(cache: com.kunzisoft.keepass.database.element.binary.BinaryCache): InputStream =
+        db.attachmentPool.put(7, binary(stream = {
                 object : InputStream() {
                     var emitted = 0L
                     override fun read(): Int = if (emitted++ < 65L * 1024 * 1024) 0 else -1
@@ -150,7 +177,7 @@ class KdbxRecordContentFingerprintsTest {
                         return n
                     }
                 }
-        }
+        }))
         rejected { fingerprint(db, entry) }
     }
 
@@ -173,7 +200,10 @@ class KdbxRecordContentFingerprintsTest {
         val result = KdbxRecordContentFingerprints.read(db, key)
         assertTrue(result.tombstoneHmacSha256.containsKey(deleted.uuid.toString()))
         val old = result.tombstoneHmacSha256.getValue(deleted.uuid.toString())
-        deleted.deletionTime.instant.millis += 1
+        deleted.deletionTime = DateInstant(
+            org.joda.time.Instant(deleted.deletionTime.instant.millis + 1),
+            deleted.deletionTime.type
+        )
         assertNotEquals(old, KdbxRecordContentFingerprints.read(db, key).tombstoneHmacSha256.getValue(deleted.uuid.toString()))
     }
 }
