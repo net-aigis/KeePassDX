@@ -2,7 +2,7 @@ name: NetAigis KeySafe - Android build and tests
 
 on:
   push:
-    branches: ["feature/coordinated-kdbx-20261014", "security/dx-hardening-20261015", "feature/netaigis-keysafe-20261015"]
+    branches: ["main", "feature/**", "security/**"]
   pull_request:
   workflow_dispatch:
 
