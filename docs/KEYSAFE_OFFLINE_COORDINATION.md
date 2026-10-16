@@ -33,3 +33,22 @@ Exports are user-selected files and may be backed up or synchronized by the chos
 Export **three** encrypted, independent KDBX files when a conflict exists: **original base** (the common ancestor), **unsynchronized local** and **current server**. The original base export only succeeds when the encrypted cached snapshot's SHA-256 revision exactly matches the pending changes' recorded base revision. A missing, corrupted or different cached base stops the export; the app never guesses an ancestor. The pending recovery data is not removed by any export.
 
 `ThreeWayEntryMergePlan` is a **non-mutating** decision helper for whole-record changes indexed by stable KDBX UUID. It handles unchanged, one-sided modification, identical two-sided modification, and conflicts (including delete-vs-update). It cannot be given raw encrypted KDBX hashes as entry fingerprints. A future credential-aware KDBX adapter must hash the complete decrypted logical record, preserve history, attachments, links, deletions and group metadata, and verify the remote revision under an exclusive lease before a merged write. **No automatic merge or upload is enabled by this patch.** A timestamp-based upstream merge is not a safe substitute for this adapter.
+
+## Three-way structural preflight (phase 2C; no automatic write)
+
+`ThreeWayKdbxTreePlan` checks **complete, already-decrypted and canonicalized**
+UUID-indexed entry/group snapshots supplied by a future KDBX adapter. It treats
+parent movement as a record change, rejects double edits, and verifies that
+all chosen nodes form an attached, acyclic group hierarchy. This prevents
+independent, individually valid edits from silently creating a cycle or
+leaving an entry under a group deleted by the other editor. It also rejects
+root mismatches, UUID type changes and malformed SHA-256 record fingerprints.
+
+**This is a pure preflight, not a KDBX adapter**: it does not read/unlock KDBX
+files, prove fingerprint completeness, merge global database settings,
+custom icons or deleted-object tombstones, preserve binary pools, serialize
+results, or publish a revision. It must not be wired to the timestamp-based
+`DatabaseKDBXMerger` as if that constituted a safe merge. Conflict exports and
+the local pending recovery are unchanged; no automatic conflict resolution
+or upload is enabled. A verified credential-aware adapter and lease-protected
+revision revalidation are still required before any merge may be written.
