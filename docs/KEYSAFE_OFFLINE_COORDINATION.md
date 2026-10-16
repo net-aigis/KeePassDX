@@ -52,3 +52,22 @@ results, or publish a revision. It must not be wired to the timestamp-based
 the local pending recovery are unchanged; no automatic conflict resolution
 or upload is enabled. A verified credential-aware adapter and lease-protected
 revision revalidation are still required before any merge may be written.
+
+## Decrypted KDBX model inventory (phase 2D; no merge authorization)
+
+`KdbxModelSnapshotReader.read(DatabaseKDBX)` traverses the **actual KeePassDX
+KDBX model**, not synthetic UUID maps. It reads live groups and entries,
+validates containment against the parent pointers, rejects repeated UUIDs,
+records whether each entry has history versions and attachment references,
+and preserves `DeletedObjects` identities and their deletion timestamps.
+The traversal is iterative and does not save any decrypted field values or
+modify the database. Tombstones and live nodes remain distinct data sets.
+
+**Do not treat the inventory as a mergeable fingerprinted snapshot.** Entry
+attachment pool IDs do not identify attachment contents across database copies,
+and history data, custom fields, icons, protected fields, group metadata,
+and database-wide metadata are not fingerprinted here. The reader deliberately
+cannot be passed to `ThreeWayKdbxTreePlan.plan` as a complete snapshot. A future
+adapter must canonicalize those values, verify binary bytes, and implement a
+reviewed atomic writer and lease-protected revision check before any merge or
+publish path can be enabled.
