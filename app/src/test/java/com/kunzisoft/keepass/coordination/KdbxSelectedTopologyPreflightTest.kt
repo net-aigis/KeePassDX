@@ -81,6 +81,57 @@ class KdbxSelectedTopologyPreflightTest {
         check(entry("moved", "root"))
     }
 
+    @Test fun `distinct indexed siblings are accepted`() {
+        t.validate("root", mapOf(
+            "root" to root,
+            "a" to group("a").copy(indexInParent = 1),
+            "x" to entry("x").copy(indexInParent = 2)
+        ))
+    }
+
+    @Test fun `two selected siblings cannot share an index`() {
+        rejects {
+            t.validate("root", mapOf(
+                "root" to root,
+                "a" to group("a").copy(indexInParent = 1),
+                "x" to entry("x").copy(indexInParent = 1)
+            ))
+        }
+    }
+
+    @Test fun `same sibling index is valid under different parent groups`() {
+        t.validate("root", mapOf(
+            "root" to root,
+            "a" to group("a").copy(indexInParent = 1),
+            "b" to group("b").copy(indexInParent = 2),
+            "x" to entry("x", "a").copy(indexInParent = 1),
+            "y" to entry("y", "b").copy(indexInParent = 1)
+        ))
+    }
+
+    @Test fun `partially indexed combined tree fails closed`() {
+        rejects {
+            t.validate("root", mapOf(
+                "root" to root,
+                "a" to group("a").copy(indexInParent = 1),
+                "x" to entry("x")
+            ))
+        }
+    }
+
+    @Test fun `negative sibling index is rejected`() {
+        rejects {
+            t.validate("root", mapOf(
+                "root" to root,
+                "x" to entry("x").copy(indexInParent = -1)
+            ))
+        }
+    }
+
+    @Test fun `root cannot carry a sibling index`() {
+        rejects { t.validate("root", mapOf("root" to root.copy(indexInParent = 0))) }
+    }
+
     @Test fun `deep hierarchy is checked without recursive stack usage`() {
         val nodes = linkedMapOf("root" to root)
         var parent = "root"

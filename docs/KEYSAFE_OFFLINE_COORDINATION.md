@@ -164,3 +164,22 @@ This is **not** a complete cryptographic-header comparison. Random KDF salts,
 unknown KDF parameters, public and inner-header extensions, key-file or other
 credential material, and all serialization/re-encryption guarantees remain
 outside the inspected surface. No result authorizes merge, save or upload.
+
+## Combined sibling-order collision preflight (phase 2J; still read-only)
+
+`KdbxModelSnapshotReader` now records each real non-root KDBX node's
+`indexInParent` alongside UUID and parent identity. When a conflict-free
+three-copy review selects a combined tree, the topology preflight rejects
+duplicate positions among siblings, negative positions and partially indexed
+inventories. Nodes under different parents may use the same index; the root
+must not have a sibling index. Legacy synthetic test snapshots without
+positions remain supported, but real KDBX inventories supply positions.
+
+Independent offline additions can choose the same position. The guard
+**reports an unresolved ordering collision** rather than silently
+reassigning positions or dropping a child. It does not validate a final
+serialized order, resolve simultaneous insertions, reconstruct group child
+lists or approve any write. Group-content fingerprints still include
+child membership and ordering and may conservatively report conflicts
+for otherwise independent additions. All such cases require a separate
+reviewed merge strategy. No automatic merge, save or publication is enabled.

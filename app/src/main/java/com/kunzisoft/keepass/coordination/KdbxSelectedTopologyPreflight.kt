@@ -18,15 +18,32 @@ internal object KdbxSelectedTopologyPreflight {
         require(root?.kind == KdbxModelSnapshotReader.Kind.GROUP && root.parentGroupId == null) {
             "Selected KDBX root is missing, is not a group, or has a parent"
         }
+        // Positions belong to the selected combined tree, not an individual
+        // source. Independent additions can both choose the same sibling index.
+        // Never silently select an ambiguous order or invent a reindexing.
+        val hasIndexedNodes = selectedNodes.values.any { it.indexInParent != null }
+        val occupiedPositions = HashSet<Pair<String, Int>>()
         for ((id, node) in selectedNodes) {
             require(id.isNotBlank() && id == node.id) { "Selected KDBX node UUID mismatch" }
-            if (id == rootId) continue
+            if (id == rootId) {
+                require(node.indexInParent == null) { "Selected KDBX root has a sibling index" }
+                continue
+            }
             require(node.parentGroupId != null && node.parentGroupId != id) {
                 "Selected KDBX node has no parent or references itself: $id"
             }
             val parent = selectedNodes[node.parentGroupId]
             require(parent?.kind == KdbxModelSnapshotReader.Kind.GROUP) {
                 "Selected KDBX node has a missing/non-group parent: $id"
+            }
+            if (hasIndexedNodes) {
+                val order = requireNotNull(node.indexInParent) {
+                    "Selected KDBX node has no sibling index: $id"
+                }
+                require(order >= 0) { "Selected KDBX node has an invalid sibling index: $id" }
+                require(occupiedPositions.add(node.parentGroupId to order)) {
+                    "Selected KDBX siblings have the same index under ${node.parentGroupId}"
+                }
             }
         }
 

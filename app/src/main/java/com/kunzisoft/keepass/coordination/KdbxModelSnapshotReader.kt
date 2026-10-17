@@ -22,7 +22,10 @@ internal object KdbxModelSnapshotReader {
         val kind: Kind,
         val parentGroupId: String?,
         val historyVersions: Int = 0,
-        val attachmentReferences: Int = 0
+        val attachmentReferences: Int = 0,
+        // Null is reserved for the root and for older synthetic test inventories.
+        // Real KDBX children always carry their position in the parent group.
+        val indexInParent: Int? = null
     )
 
     data class Tombstone(
@@ -53,7 +56,10 @@ internal object KdbxModelSnapshotReader {
             }
             val id = group.id.toString()
             require(id !in nodes) { "Duplicate KDBX node UUID: $id" }
-            nodes[id] = Node(id, Kind.GROUP, group.parent?.id?.toString())
+            nodes[id] = Node(
+                id, Kind.GROUP, group.parent?.id?.toString(),
+                indexInParent = if (group.parent == null) null else group.indexInParent
+            )
 
             for (child in group.getChildGroups()) {
                 require(child.parent === group) {
@@ -72,7 +78,8 @@ internal object KdbxModelSnapshotReader {
                     kind = Kind.ENTRY,
                     parentGroupId = id,
                     historyVersions = entry.history.size,
-                    attachmentReferences = entry.binaries.size
+                    attachmentReferences = entry.binaries.size,
+                    indexInParent = entry.indexInParent
                 )
             }
         }
