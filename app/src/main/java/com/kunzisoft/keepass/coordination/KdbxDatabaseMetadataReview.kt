@@ -13,7 +13,7 @@ import javax.crypto.spec.SecretKeySpec
  * No metadata values, MACs, decrypted fields or binary contents leave this API.
  *
  * NOT a complete serialization inventory and NOT merge/write authorization:
- * cipher/KDF parameters, public header variants, credential material, raw
+ * complete KDF parameters/salts, public header variants, credential material, raw
  * binary-pool reconstruction and unknown KDBX extensions still need review.
  */
 internal object KdbxDatabaseMetadataReview {
@@ -82,6 +82,17 @@ internal object KdbxDatabaseMetadataReview {
         add("database.lastSelectedGroupUUID") { text(db.lastSelectedGroupUUID.toString()) }
         add("database.lastTopVisibleGroupUUID") { text(db.lastTopVisibleGroupUUID.toString()) }
         add("database.compressionAlgorithm") { text(db.compressionAlgorithm.name) }
+
+        // Compare effective cryptographic choices, never the secret credential
+        // or randomized per-file KDF salt. Unknown KDF extensions remain a
+        // separate mandatory blocker before any merge/write authorization.
+        val kdf = requireNotNull(db.kdfEngine) { "KDBX has no KDF engine" }
+        val kdfUuid = requireNotNull(kdf.uuid) { "KDBX KDF algorithm UUID is missing" }
+        add("crypto.cipherUuid") { text(db.encryptionAlgorithm.uuid.toString()) }
+        add("crypto.kdfUuid") { text(kdfUuid.toString()) }
+        add("crypto.kdfRounds") { text(kdf.getKeyRounds().toString()) }
+        add("crypto.kdfMemory") { text(kdf.getMemoryUsage().toString()) }
+        add("crypto.kdfParallelism") { number(kdf.getParallelism()) }
 
         val protection = db.memoryProtection
         add("memory.protectTitle") { bool(protection.protectTitle) }

@@ -1,6 +1,8 @@
 /* SPDX-License-Identifier: GPL-3.0-or-later */
 package com.kunzisoft.keepass.coordination
 
+import com.kunzisoft.keepass.database.crypto.EncryptionAlgorithm
+import com.kunzisoft.keepass.database.crypto.kdf.KdfFactory
 import com.kunzisoft.keepass.database.element.CustomDataItem
 import com.kunzisoft.keepass.database.element.DateInstant
 import com.kunzisoft.keepass.database.element.binary.BinaryCache
@@ -131,6 +133,29 @@ class KdbxDatabaseMetadataReviewTest {
     @Test fun `corrupted custom icon fails closed`() {
         val local = db().apply { addIcon(this, "bad", corrupted = true) }
         rejects { report(db(), local, db()) }
+    }
+
+    @Test fun `one-sided cipher change is detected`() {
+        val local = db().apply { encryptionAlgorithm = EncryptionAlgorithm.Twofish }
+        assertEquals(KdbxDatabaseMetadataReview.Source.LOCAL,
+            source(report(db(), local, db()), "crypto.cipherUuid"))
+    }
+
+    @Test fun `divergent cipher changes conflict`() {
+        val local = db().apply { encryptionAlgorithm = EncryptionAlgorithm.Twofish }
+        val remote = db().apply { encryptionAlgorithm = EncryptionAlgorithm.ChaCha20 }
+        assertEquals(KdbxDatabaseMetadataReview.Source.CONFLICT,
+            source(report(db(), local, remote), "crypto.cipherUuid"))
+    }
+
+    @Test fun `changed KDF algorithm is detected`() {
+        val local = db().apply { kdfEngine = KdfFactory.argon2idKdf }
+        assertEquals(KdbxDatabaseMetadataReview.Source.LOCAL,
+            source(report(db(), local, db()), "crypto.kdfUuid"))
+    }
+
+    @Test fun `missing KDF engine fails closed`() {
+        rejects { report(db(), db().apply { kdfEngine = null }, db()) }
     }
 
     @Test fun `short or absent session key is rejected`() {

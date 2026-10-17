@@ -150,3 +150,17 @@ serialization have NOT yet been proven safe for automatic merging. Even a
 conflict-free report is NOT a writable candidate. The decrypted source models
 must remain stable throughout comparison, and a separate credential-aware,
 lease-protected, atomic writer remains necessary.
+
+## Cipher and KDF work-factor review (phase 2I; read-only)
+
+The metadata comparison now also classifies the encryption cipher UUID, KDF engine
+UUID and effective iteration, memory and parallelism settings. These properties
+are compared using the same ephemeral session-keyed HMACs as other metadata:
+no key material, work factors, fingerprints or master credentials are returned.
+A missing KDF engine or algorithm UUID fails closed. Cipher/KDF setting changes
+are reported but never automatically accepted or applied to a merged database.
+
+This is **not** a complete cryptographic-header comparison. Random KDF salts,
+unknown KDF parameters, public and inner-header extensions, key-file or other
+credential material, and all serialization/re-encryption guarantees remain
+outside the inspected surface. No result authorizes merge, save or upload.
