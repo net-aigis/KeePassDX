@@ -6,6 +6,28 @@ This fork preserves KDBX support and adds an experimental HTTPS coordination fea
 for shared encrypted databases. It is **not yet suitable for production password data**:
 end-to-end concurrency, crash/recovery and security checks are still outstanding.
 
+
+## Shared KDBX on Android and desktop (under development)
+
+Looking for **multi-user KeePassDX**, **KeePassXC shared databases**, or a way to
+share a **KeePass/KDBX password database on Android**? NetAigis KeySafe is a
+KeePassDX-based Android project developing access coordination for an encrypted
+`.kdbx` database across people and devices using a self-hosted HTTPS coordinator.
+Interoperability with KeePassXC is a project goal, **not a completed or verified
+cross-platform multi-user solution**.
+
+The coordinator manages access and revisions; it is not a server-side password
+vault like Vaultwarden. The password database remains in encrypted KDBX format.
+
+Current experimental work includes exclusive editing leases, revision checks,
+encrypted offline recovery, conflict exports, and read-only comparisons between
+base, local and server copies. Safe automatic conflict merging, a complete
+cross-platform workflow, and production release testing are **not finished**.
+Do not use real password databases for testing this feature.
+
+See [offline coordination and merge limitations](docs/KEYSAFE_OFFLINE_COORDINATION.md)
+for the exact implementation status; follow commits and
+[GitHub Actions](https://github.com/net-aigis/NetAigis-KeySafe/actions) for progress.
 ## Android application identity
 
 - Display name: **NetAigis KeySafe**
