@@ -9,15 +9,19 @@ import java.security.SecureRandom
  * cannot grant write access, and intentionally does not return any record HMACs.
  * The caller must hold each model stable for the whole comparison.
  *
- * This cannot decide database-wide metadata, custom-icon bytes, binary-pool
- * reconstruction, credential handling or revision/lease safety. Those remain
+ * This reports selected database-wide metadata and custom-icon changes,
+ * but cannot decide unknown KDBX extensions, binary-pool reconstruction,
+ * credential handling or revision/lease safety. Those remain
  * mandatory before any later implementation may write or upload a merged KDBX.
  */
 internal object KdbxThreeCopyReview {
     enum class Source { UNCHANGED, LOCAL, REMOTE, IDENTICAL, CONFLICT }
 
     data class Decision(val id: String, val source: Source)
-    data class Report(val decisions: List<Decision>) {
+    data class Report(
+        val decisions: List<Decision>,
+        val metadata: KdbxDatabaseMetadataReview.Report
+    ) {
         val conflictIds: List<String> get() = decisions.filter { it.source == Source.CONFLICT }.map { it.id }
     }
 
@@ -32,7 +36,8 @@ internal object KdbxThreeCopyReview {
             return compare(
                 KdbxRecordContentFingerprints.read(base, key),
                 KdbxRecordContentFingerprints.read(local, key),
-                KdbxRecordContentFingerprints.read(remote, key)
+                KdbxRecordContentFingerprints.read(remote, key),
+                KdbxDatabaseMetadataReview.compare(base, local, remote, key)
             )
         } finally {
             key.fill(0)
@@ -43,7 +48,8 @@ internal object KdbxThreeCopyReview {
     private fun compare(
         base: KdbxRecordContentFingerprints.Inventory,
         local: KdbxRecordContentFingerprints.Inventory,
-        remote: KdbxRecordContentFingerprints.Inventory
+        remote: KdbxRecordContentFingerprints.Inventory,
+        metadata: KdbxDatabaseMetadataReview.Report
     ): Report {
         val all = listOf(base, local, remote)
         val root = base.model.rootGroupId
@@ -114,7 +120,7 @@ internal object KdbxThreeCopyReview {
         if (!hasConflict) {
             KdbxSelectedTopologyPreflight.validate(root, selectedNodes)
         }
-        return Report(decisions)
+        return Report(decisions, metadata)
     }
 
     private sealed interface State {

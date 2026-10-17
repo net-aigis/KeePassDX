@@ -130,3 +130,23 @@ ordering or content fingerprint for the eventual combined model. It also does
 not reconcile database-level settings, custom icons, binary pools, credential
 changes, revision/lease validity, or atomic writes. It must not be wired to a writer or
 interpreted as proof that all KDBX information was merged without loss.
+
+## Database-wide three-copy metadata review (phase 2H; read-only)
+
+`KdbxDatabaseMetadataReview.compare(base, local, remote, key)` classifies changes
+in database-level settings, timestamps, password-field protection preferences,
+custom database properties, and **decoded custom-icon content**. Each property
+and each icon is compared with a domain-separated HMAC-SHA256 under the same
+fresh session key used for the entry/group review. The result contains only
+property identifiers and change/conflict classifications, never values or
+fingerprints. Corrupted custom-icon data and oversized expanded icons fail
+closed. `KdbxThreeCopyReview.Report.metadata` exposes these classifications;
+The caller must separately inspect `conflictIds` and `metadata.conflictKeys`;
+no combined success/authorization flag exists.
+
+**Still no merge/write permission.** KDF/cipher settings, key material, public
+header variants, unknown extensions, attachment-pool reconstruction, and
+serialization have NOT yet been proven safe for automatic merging. Even a
+conflict-free report is NOT a writable candidate. The decrypted source models
+must remain stable throughout comparison, and a separate credential-aware,
+lease-protected, atomic writer remains necessary.
