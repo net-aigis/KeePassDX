@@ -94,3 +94,22 @@ bytes, cross-copy deleted-object reconciliation, binary-pool reconstruction,
 and the atomic writer/remote lease recheck are NOT implemented. These HMACs
 are intentionally not passed to `ThreeWayKdbxTreePlan` and do not enable
 merging, saving or publishing. Existing encrypted recovery is unchanged.
+
+## Ephemeral three-copy KDBX comparison (phase 2F; review only)
+
+`KdbxThreeCopyReview.read(base, local, remote)` reads three already-decrypted,
+**stable** `DatabaseKDBX` models with one fresh random 256-bit in-memory HMAC
+key. The key is zeroed after comparison; neither it nor the per-record HMACs
+are returned. Results contain only UUIDs and classifications: unchanged,
+local-only, remote-only, identical edit, or conflict. Divergent edits and
+modification-vs-deletion are visible as conflicts. A deletion in one branch
+requires an explicit `DeletedObject`; missing base records without a tombstone,
+live/tombstone UUID overlap, incompatible node kinds, deleted UUID reuse, and
+incompatible root groups fail closed.
+
+**This is NOT a writable merge plan or a safe-to-publish indicator.** A result
+with no reported conflict does not validate cross-record merged topology,
+database-wide metadata, custom-icon image bytes, binary-pool reconstruction,
+credentials, revision revalidation under an exclusive lease, atomic KDBX
+writing, or recovery retention. It does not read or write files itself, modify
+any model, enable automatic merge, or transmit HMACs to the coordinator.
