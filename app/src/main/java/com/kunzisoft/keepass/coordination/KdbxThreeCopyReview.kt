@@ -73,6 +73,8 @@ internal object KdbxThreeCopyReview {
 
         val ids = all.flatMap { it.model.nodes.keys + it.model.tombstones.keys }.toSortedSet()
         val decisions = ArrayList<Decision>(ids.size)
+        val selectedNodes = LinkedHashMap<String, KdbxModelSnapshotReader.Node>()
+        var hasConflict = false
         for (id in ids) {
             val kinds = all.mapNotNull { it.model.nodes[id]?.kind }.distinct()
             require(kinds.size <= 1) { "KDBX UUID reused for another record kind: $id" }
@@ -98,6 +100,19 @@ internal object KdbxThreeCopyReview {
                 else -> Source.CONFLICT
             }
             decisions.add(Decision(id, source))
+            if (source == Source.CONFLICT) {
+                hasConflict = true
+            } else {
+                // Keep the node metadata from the same inventory that produced
+                // the HMAC-based decision, never reread mutable models here.
+                val chosen = if (source == Source.REMOTE) remote else local
+                chosen.model.nodes[id]?.let { selectedNodes[id] = it }
+            }
+        }
+        // A conflict cannot be resolved by this review; therefore it has no
+        // well-defined combined topology to validate. Preserve its decisions.
+        if (!hasConflict) {
+            KdbxSelectedTopologyPreflight.validate(root, selectedNodes)
         }
         return Report(decisions)
     }

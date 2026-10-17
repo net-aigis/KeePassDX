@@ -113,3 +113,20 @@ database-wide metadata, custom-icon image bytes, binary-pool reconstruction,
 credentials, revision revalidation under an exclusive lease, atomic KDBX
 writing, or recovery retention. It does not read or write files itself, modify
 any model, enable automatic merge, or transmit HMACs to the coordinator.
+
+## Selected combined KDBX topology preflight (phase 2G; still read-only)
+
+After `KdbxThreeCopyReview` has classified **all** UUIDs, a result without
+record conflicts now validates the combined group/entry topology **using the
+same already-read inventories**, without reopening or mutating the KDBX models.
+`KdbxSelectedTopologyPreflight` rejects missing or non-group parents, UUID-map
+mismatches, detached groups, missing/incorrect roots and cyclic group ancestry;
+the traversal is iterative. If there are unresolved record conflicts, the
+three-copy review still reports them without pretending a selected tree exists.
+
+Passing this guard is **NOT merge authorization**. The check validates
+selected parent pointers but does **not** reconstruct a group's child lists,
+ordering or content fingerprint for the eventual combined model. It also does
+not reconcile database-level settings, custom icons, binary pools, credential
+changes, revision/lease validity, or atomic writes. It must not be wired to a writer or
+interpreted as proof that all KDBX information was merged without loss.
