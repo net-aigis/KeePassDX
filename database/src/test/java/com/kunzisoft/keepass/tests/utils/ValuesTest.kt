@@ -174,15 +174,15 @@ class ValuesTest : TestCase() {
     }
 
     fun testDateCompare() {
-        val dateInstantA = DateInstant().apply {
+        val dateInstantA = DateInstant(Instant.ofEpochMilli(0L)).apply {
             setDate(2024, 12, 2)
             setTime(5, 13)
         }
-        val dateInstantB = DateInstant().apply {
+        val dateInstantB = DateInstant(Instant.ofEpochMilli(0L)).apply {
             setDate(2024, 12, 2)
             setTime(5, 10)
         }
-        val dateInstantC = DateInstant().apply {
+        val dateInstantC = DateInstant(Instant.ofEpochMilli(0L)).apply {
             setDate(2024, 12, 2)
             setTime(5, 10)
         }
